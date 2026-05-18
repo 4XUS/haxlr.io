@@ -1,0 +1,2271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAXLR.IO — Press Start</title>
+
+<!-- SEO -->
+<meta name="description" content="haxlr.io — Game designer hub. Three paths, one universe. Portfolio, playable games, and original merch.">
+<meta name="author" content="Axel Guedj">
+<meta name="theme-color" content="#03040a">
+
+<!-- Open Graph (Facebook, LinkedIn, Discord) -->
+<meta property="og:title" content="HAXLR.IO — Choose Your Class">
+<meta property="og:description" content="Game designer hub. Three paths, one universe.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://haxlr.io">
+<meta property="og:site_name" content="haxlr.io">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HAXLR.IO — Choose Your Class">
+<meta name="twitter:description" content="Game designer hub. Three paths, one universe.">
+
+<!-- Favicon (inline SVG to avoid extra file) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpolygon points='16,3 28,9 28,23 16,29 4,23 4,9' fill='none' stroke='%2300e7ff' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%2300e7ff'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;500;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-0: #03040a;
+    --bg-1: #07091a;
+    --bg-2: #0d1024;
+    --ink: #e8ecff;
+    --ink-soft: #9ea3c4;
+    --dim: #4a5078;
+
+    --warrior: #ff2e5a;
+    --warrior-2: #ff7090;
+    --warrior-dark: #4a0a1c;
+    --mage: #00e7ff;
+    --mage-2: #6ef5ff;
+    --mage-dark: #003845;
+    --rogue: #ffc700;
+    --rogue-2: #ffe566;
+    --rogue-dark: #4d3a00;
+
+    --grid: rgba(110, 245, 255, 0.06);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ============================================
+     CORE ANIMATIONS
+     ============================================ */
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+  }
+
+  @keyframes flicker {
+    0%, 95%, 100% { opacity: 1; }
+    96% { opacity: 0.88; }
+    97.5% { opacity: 0.95; }
+    98.5% { opacity: 0.85; }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { filter: drop-shadow(0 0 12px currentColor); }
+    50% { filter: drop-shadow(0 0 24px currentColor) drop-shadow(0 0 4px currentColor); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  @keyframes blink-fast {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.2; }
+  }
+
+  @keyframes ready-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  @keyframes border-flow {
+    0%, 100% { background-position: 0% 0; }
+    50% { background-position: 100% 0; }
+  }
+
+  @keyframes data-stream {
+    0% { transform: translateY(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(40px); opacity: 0; }
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* ============================================
+     INTRO ANIMATIONS
+     ============================================ */
+  @keyframes boot-scan {
+    0% { height: 100vh; top: 0; }
+    100% { height: 0; top: 50vh; }
+  }
+
+  @keyframes power-on {
+    0% { transform: scaleY(0); opacity: 0; }
+    50% { transform: scaleY(0.005); opacity: 1; }
+    51% { transform: scaleY(0.005); }
+    100% { transform: scaleY(1); opacity: 1; }
+  }
+
+  @keyframes title-zoom-in {
+    0% { transform: scale(0.3) translateY(40px); opacity: 0; filter: blur(20px); }
+    50% { opacity: 1; filter: blur(0); }
+    70% { transform: scale(1.1) translateY(0); }
+    100% { transform: scale(1) translateY(0); opacity: 1; filter: blur(0); }
+  }
+
+  @keyframes text-glitch {
+    0%, 100% { transform: translate(0); text-shadow: 0 0 20px rgba(0, 231, 255, 0.5), 3px 0 0 var(--warrior), -3px 0 0 var(--mage); }
+    20% { transform: translate(-2px, 1px); text-shadow: 0 0 20px rgba(0, 231, 255, 0.5), -3px 0 0 var(--warrior), 3px 0 0 var(--mage); }
+    40% { transform: translate(2px, -1px); text-shadow: 0 0 20px rgba(0, 231, 255, 0.5), 3px 0 0 var(--warrior), -3px 0 0 var(--mage); }
+    60% { transform: translate(0, 1px); text-shadow: 0 0 20px rgba(0, 231, 255, 0.5), -3px 0 0 var(--warrior), 3px 0 0 var(--mage); }
+    80% { transform: translate(-1px, 0); }
+  }
+
+  @keyframes typewriter {
+    0% { width: 0; }
+    100% { width: 100%; }
+  }
+
+  @keyframes intro-exit-flash {
+    0% { background: rgba(255, 255, 255, 0); }
+    20% { background: rgba(255, 255, 255, 0.95); }
+    100% { background: rgba(255, 255, 255, 0); }
+  }
+
+  @keyframes intro-fade-out {
+    0% { opacity: 1; transform: scale(1); filter: blur(0); }
+    50% { transform: scale(1.2); }
+    100% { opacity: 0; transform: scale(1.4); filter: blur(20px); }
+  }
+
+  @keyframes glitch-out {
+    0% { clip-path: inset(0 0 0 0); transform: translate(0); }
+    10% { clip-path: inset(20% 0 50% 0); transform: translate(-20px, 0); }
+    20% { clip-path: inset(50% 0 20% 0); transform: translate(20px, 0); }
+    30% { clip-path: inset(30% 0 40% 0); transform: translate(-15px, 5px); }
+    40% { clip-path: inset(60% 0 10% 0); transform: translate(10px, -5px); }
+    50% { clip-path: inset(10% 0 70% 0); transform: translate(-25px, 0); }
+    60% { clip-path: inset(40% 0 30% 0); transform: translate(20px, 10px); }
+    70% { clip-path: inset(70% 0 5% 0); transform: translate(-10px, -10px); }
+    80% { clip-path: inset(0% 0 80% 0); transform: translate(5px, 0); }
+    90% { clip-path: inset(50% 0 30% 0); transform: translate(0); }
+    100% { clip-path: inset(0 0 0 0); transform: translate(0); opacity: 0; }
+  }
+
+  @keyframes menu-reveal {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes loading-bar {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+
+  @keyframes boot-line {
+    0% { opacity: 0; transform: translateX(-10px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ============================================
+     BASE
+     ============================================ */
+  html, body {
+    background: #000;
+    color: var(--ink);
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Lock scroll only while intro is active */
+  body:not(.menu-active) {
+    overflow: hidden;
+  }
+
+  body.menu-active {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  /* ============================================
+     INTRO SCREEN
+     ============================================ */
+  #intro {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-0);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  /* CRT power-on effect */
+  #intro::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at center, rgba(0, 231, 255, 0.15), transparent 60%),
+      radial-gradient(circle at 30% 70%, rgba(255, 46, 90, 0.1), transparent 50%),
+      radial-gradient(circle at 70% 30%, rgba(255, 199, 0, 0.08), transparent 50%);
+    animation: flicker 4s infinite;
+  }
+
+  /* Power-on scan line */
+  #intro::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--mage), var(--mage), transparent);
+    box-shadow: 0 0 20px var(--mage), 0 0 40px var(--mage);
+    z-index: 5;
+    animation: boot-scan 1.2s cubic-bezier(0.6, 0, 0.4, 1) forwards;
+  }
+
+  .intro-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    transform: scaleY(0);
+    animation: power-on 1.2s cubic-bezier(0.6, 0, 0.4, 1) 0.4s forwards;
+  }
+
+  /* Boot sequence text */
+  .boot-log {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--mage);
+    line-height: 1.7;
+    text-align: left;
+    opacity: 0.6;
+    z-index: 3;
+  }
+
+  .boot-log .line {
+    opacity: 0;
+    animation: boot-line 0.2s forwards;
+  }
+
+  .boot-log .line:nth-child(1) { animation-delay: 1.5s; }
+  .boot-log .line:nth-child(2) { animation-delay: 1.7s; }
+  .boot-log .line:nth-child(3) { animation-delay: 1.9s; }
+  .boot-log .line:nth-child(4) { animation-delay: 2.1s; }
+  .boot-log .line:nth-child(5) { animation-delay: 2.3s; }
+  .boot-log .line:nth-child(6) { animation-delay: 2.5s; }
+  .boot-log .line:nth-child(7) { animation-delay: 2.7s; }
+  .boot-log .line:nth-child(8) { animation-delay: 2.9s; }
+
+  .boot-log .ok { color: #4ade80; }
+  .boot-log .warn { color: var(--rogue); }
+
+  /* Studio mark */
+  .studio-mark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-soft);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: boot-line 0.6s ease-out 1.8s forwards;
+  }
+
+  .studio-mark::before, .studio-mark::after {
+    content: '·';
+    margin: 0 12px;
+    color: var(--mage);
+  }
+
+  /* Main logo / title */
+  .intro-logo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    color: var(--mage);
+    animation: pulse-glow 2s ease-in-out infinite;
+    opacity: 0;
+    animation: pulse-glow 2s ease-in-out infinite, boot-line 0.6s ease-out 2.2s forwards;
+  }
+
+  .intro-logo svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .intro-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: clamp(60px, 12vw, 140px);
+    line-height: 0.9;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation:
+      title-zoom-in 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 2.4s forwards,
+      text-glitch 6s infinite 4s;
+    position: relative;
+    display: inline-block;
+  }
+
+  .intro-title .dot {
+    color: var(--warrior);
+  }
+
+  .intro-title .ext {
+    background: linear-gradient(90deg, var(--warrior), var(--mage), var(--rogue));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+
+  .intro-tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 64px;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--mage);
+    width: 0;
+    margin-left: auto;
+    margin-right: auto;
+    animation:
+      typewriter 1.8s steps(40) 3.6s forwards,
+      blink 0.8s step-end 5.4s infinite;
+    max-width: fit-content;
+  }
+
+  /* PRESS START */
+  .press-start {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(16px, 2vw, 22px);
+    color: var(--ink);
+    letter-spacing: 0.2em;
+    text-shadow:
+      0 0 12px var(--mage),
+      0 0 24px var(--mage),
+      0 0 4px var(--mage);
+    opacity: 0;
+    animation:
+      boot-line 0.6s ease-out 5.5s forwards,
+      blink-fast 0.8s step-end 5.5s infinite;
+    margin-bottom: 24px;
+  }
+
+  .press-start .key-box {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 2px solid var(--mage);
+    margin: 0 4px;
+    background: rgba(0, 231, 255, 0.1);
+    box-shadow:
+      inset 0 0 12px rgba(0, 231, 255, 0.3),
+      0 0 16px rgba(0, 231, 255, 0.4);
+  }
+
+  /* Loading bar (appears after click) */
+  .loading-section {
+    margin-top: 16px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .loading-section.active {
+    opacity: 1;
+  }
+
+  .loading-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--mage);
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+  }
+
+  .loading-bar-container {
+    width: 320px;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--mage);
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 0 16px rgba(0, 231, 255, 0.3);
+  }
+
+  .loading-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--mage-dark), var(--mage));
+    box-shadow: 0 0 16px var(--mage);
+    width: 0;
+    position: relative;
+  }
+
+  .loading-section.active .loading-bar-fill {
+    animation: loading-bar 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  .loading-bar-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    background-size: 50% 100%;
+    animation: shimmer 1s linear infinite;
+  }
+
+  .loading-percent {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--mage);
+    margin-top: 8px;
+    letter-spacing: 0.1em;
+  }
+
+  /* Bottom info bar */
+  .intro-footer {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: var(--dim);
+    letter-spacing: 0.15em;
+    opacity: 0;
+    animation: boot-line 0.6s ease-out 4.5s forwards;
+    z-index: 3;
+  }
+
+  .intro-footer .copyright {
+    color: var(--ink-soft);
+  }
+
+  .intro-footer .version {
+    color: var(--mage);
+  }
+
+  /* Scanlines + noise on intro */
+  .intro-scanlines {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .intro-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.7) 100%);
+    pointer-events: none;
+    z-index: 4;
+  }
+
+  /* Intro exit states */
+  #intro.exiting {
+    pointer-events: none;
+  }
+
+  #intro.exiting .intro-content {
+    animation: glitch-out 0.8s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+  }
+
+  #intro.flash::before {
+    animation: intro-exit-flash 0.4s ease-out forwards;
+  }
+
+  #intro.fade-out {
+    animation: intro-fade-out 0.6s ease-in 0.5s forwards;
+  }
+
+  /* ============================================
+     MENU (initially hidden)
+     ============================================ */
+  #menu {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    background: var(--bg-0);
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+  }
+
+  #menu.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #menu.active .menu-anim {
+    animation: menu-reveal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  #menu.active .menu-anim-1 { animation-delay: 0s; }
+  #menu.active .menu-anim-2 { animation-delay: 0.15s; }
+  #menu.active .menu-anim-3 { animation-delay: 0.3s; }
+  #menu.active .menu-anim-4 { animation-delay: 0.45s; }
+  #menu.active .menu-anim-5 { animation-delay: 0.6s; }
+
+  .menu-anim { opacity: 0; }
+
+  /* Background */
+  #menu::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 15% 25%, rgba(255, 46, 90, 0.15), transparent 35%),
+      radial-gradient(circle at 85% 30%, rgba(0, 231, 255, 0.15), transparent 35%),
+      radial-gradient(circle at 50% 90%, rgba(255, 199, 0, 0.1), transparent 50%);
+    z-index: 0;
+    pointer-events: none;
+    animation: flicker 8s infinite;
+  }
+
+  #menu::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: -10%;
+    right: -10%;
+    height: 60vh;
+    background-image:
+      linear-gradient(var(--grid) 2px, transparent 2px),
+      linear-gradient(90deg, var(--grid) 2px, transparent 2px);
+    background-size: 60px 60px;
+    transform: perspective(500px) rotateX(65deg);
+    transform-origin: bottom;
+    mask-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  #menu .menu-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Persistent scanline on menu */
+  .menu-scanline {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 231, 255, 0.04) 50%, transparent 100%);
+    height: 240px;
+    pointer-events: none;
+    z-index: 100;
+    animation: scanline 9s linear infinite;
+  }
+
+  .menu-noise {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 99;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+
+  /* HUD Header */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: linear-gradient(180deg, rgba(7, 9, 26, 0.9) 0%, rgba(7, 9, 26, 0.7) 100%);
+    backdrop-filter: blur(12px);
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid rgba(0, 231, 255, 0.3);
+    border-bottom: 1px solid rgba(0, 231, 255, 0.3);
+    flex-shrink: 0;
+  }
+
+  header::before, header::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+  }
+  header::before {
+    top: -1px; left: -1px;
+    border-top: 2px solid var(--mage);
+    border-left: 2px solid var(--mage);
+  }
+  header::after {
+    bottom: -1px; right: -1px;
+    border-bottom: 2px solid var(--mage);
+    border-right: 2px solid var(--mage);
+  }
+
+  .logo {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--mage);
+    animation: pulse-glow 2.5s ease-in-out infinite;
+  }
+
+  .logo span {
+    background: linear-gradient(90deg, var(--mage), var(--warrior));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hud-stats {
+    display: flex;
+    gap: 28px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  .stat-block {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .stat-label {
+    color: var(--dim);
+    font-size: 7px;
+  }
+
+  .stat-value {
+    color: var(--mage);
+    text-shadow: 0 0 8px currentColor;
+  }
+
+  .stat-value.gold {
+    color: var(--rogue);
+  }
+
+  .stat-value .live-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #4ade80;
+    border-radius: 50%;
+    margin-right: 6px;
+    box-shadow: 0 0 8px #4ade80;
+    animation: blink-fast 1.5s infinite;
+  }
+
+  /* Main */
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 8px;
+    position: relative;
+    z-index: 2;
+    min-height: 0;
+  }
+
+  .title-block {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .level-tag {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--mage);
+    letter-spacing: 0.25em;
+    margin-bottom: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-shadow: 0 0 12px var(--mage);
+  }
+
+  .level-tag::before, .level-tag::after {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--mage));
+    box-shadow: 0 0 8px var(--mage);
+  }
+
+  .title-block h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: clamp(32px, 4.5vw, 56px);
+    line-height: 0.95;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-shadow:
+      0 0 20px rgba(0, 231, 255, 0.2),
+      4px 4px 0 rgba(255, 46, 90, 0.15),
+      -4px -4px 0 rgba(0, 231, 255, 0.15);
+  }
+
+  .title-block h1 .accent {
+    background: linear-gradient(90deg, var(--warrior) 0%, var(--mage) 50%, var(--rogue) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+
+  .subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--ink-soft);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+
+  .subtitle .blink-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background: var(--mage);
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: blink 1s infinite;
+  }
+
+  /* Grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .character {
+    position: relative;
+    background: linear-gradient(180deg, rgba(13, 16, 36, 0.95) 0%, rgba(3, 4, 10, 0.98) 100%);
+    border: 1px solid rgba(110, 124, 200, 0.15);
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 20px) 0,
+      100% 20px,
+      100% 100%,
+      20px 100%,
+      0 calc(100% - 20px)
+    );
+  }
+
+  .character::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(120deg, transparent 30%, var(--class-color) 50%, transparent 70%);
+    background-size: 200% 100%;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .character:hover::before {
+    opacity: 1;
+    animation: border-flow 2s linear infinite;
+  }
+
+  .corner-accent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(225deg, var(--class-color) 0%, transparent 50%);
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .corner-accent::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background: var(--class-color);
+    box-shadow: 0 0 12px var(--class-color);
+    border-radius: 50%;
+    animation: blink-fast 1.2s infinite;
+  }
+
+  .character:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8), 0 0 60px var(--class-glow), inset 0 0 80px rgba(255, 255, 255, 0.02);
+  }
+
+  .character:hover .corner-accent { opacity: 1; }
+
+  .char-warrior { --class-color: var(--warrior); --class-color-2: var(--warrior-2); --class-dark: var(--warrior-dark); --class-glow: rgba(255, 46, 90, 0.5); }
+  .char-mage { --class-color: var(--mage); --class-color-2: var(--mage-2); --class-dark: var(--mage-dark); --class-glow: rgba(0, 231, 255, 0.5); }
+  .char-rogue { --class-color: var(--rogue); --class-color-2: var(--rogue-2); --class-dark: var(--rogue-dark); --class-glow: rgba(255, 199, 0, 0.5); }
+
+  .char-banner {
+    position: relative;
+    padding: 10px 18px;
+    background: linear-gradient(90deg, var(--class-color) 0%, var(--class-dark) 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: #000;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
+    z-index: 2;
+  }
+
+  .char-banner .banner-id { display: flex; align-items: center; gap: 8px; }
+  .char-banner .id-dot { width: 6px; height: 6px; background: #000; border-radius: 50%; }
+  .char-banner .class-num { color: rgba(0, 0, 0, 0.6); font-size: 9px; }
+
+  .char-portrait {
+    height: 140px;
+    position: relative;
+    background:
+      radial-gradient(ellipse at center, var(--class-glow) 0%, transparent 70%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.85) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .char-portrait::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.18) 50%);
+    background-size: 100% 3px;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .char-portrait::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent 0deg, var(--class-glow) 60deg, transparent 120deg, transparent 180deg, var(--class-glow) 240deg, transparent 300deg);
+    opacity: 0.2;
+    animation: spin 20s linear infinite;
+    z-index: 1;
+  }
+
+  .char-sprite {
+    position: relative;
+    z-index: 3;
+    width: 95px;
+    height: 95px;
+    color: var(--class-color);
+    animation: float 3.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 16px var(--class-color)) drop-shadow(0 0 4px var(--class-color));
+  }
+
+  .char-sprite svg { width: 100%; height: 100%; }
+  .character:hover .char-sprite { animation: float 1.5s ease-in-out infinite; }
+
+  .data-particle {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--class-color);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+    text-shadow: 0 0 8px currentColor;
+  }
+
+  .character:hover .data-particle {
+    animation: data-stream 2s linear infinite;
+  }
+
+  .data-particle.p1 { top: 20%; left: 15%; animation-delay: 0s; }
+  .data-particle.p2 { top: 40%; right: 20%; animation-delay: 0.5s; }
+  .data-particle.p3 { top: 60%; left: 25%; animation-delay: 1s; }
+  .data-particle.p4 { top: 30%; right: 30%; animation-delay: 1.5s; }
+
+  .char-info {
+    flex: 1;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .char-role {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 7px;
+    color: var(--class-color);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    text-shadow: 0 0 8px currentColor;
+  }
+
+  .char-name {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .char-name .accent { color: var(--class-color); }
+
+  .char-tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .char-desc {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  .char-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 10px 12px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    margin-top: 2px;
+  }
+
+  .stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 7px;
+    color: var(--dim);
+    letter-spacing: 0.15em;
+    padding-bottom: 4px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+    margin-bottom: 2px;
+  }
+
+  .stats-header .max { color: var(--class-color); }
+
+  .stat-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+  }
+
+  .stat-name { width: 50px; color: var(--ink-soft); text-transform: uppercase; font-weight: 500; font-size: 9px; }
+
+  .stat-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 50%, calc(100% - 4px) 100%, 0 100%);
+  }
+
+  .stat-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--class-color), var(--class-color-2));
+    box-shadow: 0 0 8px var(--class-color);
+    position: relative;
+    transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .character:hover .stat-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    background-size: 50% 100%;
+    animation: shimmer 1.5s linear infinite;
+  }
+
+  .stat-num {
+    width: 36px;
+    text-align: right;
+    color: var(--class-color);
+    font-weight: 700;
+    text-shadow: 0 0 6px currentColor;
+  }
+
+  .char-abilities { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px; }
+
+  .ability {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    color: var(--class-color);
+    padding: 3px 8px;
+    border: 1px solid var(--class-color);
+    background: rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .select-btn {
+    margin: 0 18px 18px;
+    padding: 12px 16px;
+    background: linear-gradient(90deg, var(--class-color) 0%, var(--class-color-2) 100%);
+    color: #000;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: relative;
+    transition: all 0.3s ease;
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .select-btn::before {
+    content: '►';
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: all 0.3s ease;
+  }
+
+  .character:hover .select-btn {
+    box-shadow: 0 0 32px var(--class-glow), inset 0 0 12px rgba(255, 255, 255, 0.4);
+    animation: ready-pulse 0.8s ease-in-out infinite;
+  }
+
+  .character:hover .select-btn::before { opacity: 1; transform: translateX(0); }
+
+  .press-key {
+    position: absolute;
+    bottom: 12px;
+    right: 16px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--class-color);
+    letter-spacing: 0.1em;
+    z-index: 4;
+    opacity: 0.4;
+    transition: opacity 0.3s;
+  }
+
+  .character:hover .press-key { opacity: 1; animation: blink-fast 1s infinite; }
+
+  .key-button {
+    display: inline-block;
+    padding: 3px 6px;
+    border: 1px solid var(--class-color);
+    background: rgba(0, 0, 0, 0.5);
+    margin-right: 6px;
+  }
+
+  footer {
+    margin-top: 16px;
+    padding: 10px 20px;
+    background: rgba(7, 9, 26, 0.7);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 231, 255, 0.2);
+    border-bottom: 1px solid rgba(0, 231, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: var(--dim);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    max-width: 1440px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+
+  .footer-controls { display: flex; gap: 20px; align-items: center; }
+  .footer-controls .ctrl-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--ink-soft); }
+  .footer-controls .key { padding: 3px 7px; border: 1px solid var(--ink-soft); background: rgba(0, 0, 0, 0.4); font-size: 8px; }
+
+  footer .socials { display: flex; gap: 18px; }
+  footer a { color: var(--ink-soft); text-decoration: none; transition: all 0.2s; }
+  footer a:hover { color: var(--mage); text-shadow: 0 0 8px var(--mage); }
+
+  /* Skip intro button */
+  .skip-intro {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: none;
+    border: 1px solid var(--dim);
+    padding: 6px 12px;
+    cursor: pointer;
+    z-index: 6;
+    opacity: 0;
+    transition: all 0.2s;
+    animation: boot-line 0.6s ease-out 1s forwards;
+  }
+
+  .skip-intro:hover {
+    color: var(--mage);
+    border-color: var(--mage);
+    box-shadow: 0 0 12px rgba(0, 231, 255, 0.3);
+  }
+
+  /* ============================================
+     LANGUAGE SWITCHER
+     ============================================ */
+  .lang-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--mage);
+    padding: 4px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    box-shadow: 0 0 12px rgba(0, 231, 255, 0.2);
+    z-index: 6;
+  }
+
+  .lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 9px;
+    background: transparent;
+    border: none;
+    color: var(--ink-soft);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .lang-btn:hover {
+    color: var(--mage);
+  }
+
+  .lang-btn.active {
+    background: var(--mage);
+    color: #000;
+    text-shadow: none;
+  }
+
+  .lang-btn .flag {
+    width: 16px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 1px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .lang-btn .flag svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* Intro language switcher: positioned absolute top left */
+  .lang-switcher.intro-lang {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    opacity: 0;
+    animation: boot-line 0.6s ease-out 1s forwards;
+  }
+
+  /* Menu language switcher: inside header, at the right */
+  .lang-switcher.menu-lang {
+    margin-left: 8px;
+    flex-shrink: 0;
+  }
+
+  /* Show/hide based on device */
+  .mobile-only { display: none; }
+  .desktop-only { display: inline; }
+  .hide-mobile { display: flex; }
+  .mobile-scroll-hint { display: none; }
+
+  @media (max-width: 640px) {
+    .mobile-only { display: inline; }
+    .desktop-only { display: none; }
+    .hide-mobile { display: none !important; }
+  }
+
+  /* ============================================
+     RESPONSIVE — TABLET (≤1024px)
+     ============================================ */
+  @media (max-width: 1024px) {
+    /* Allow vertical scroll on menu since grid becomes 1 column */
+    #menu .menu-container { height: auto; min-height: 100vh; }
+    main { justify-content: flex-start; }
+
+    /* Grid: 1 column, full-width cards */
+    .grid { grid-template-columns: 1fr; gap: 16px; }
+    .character { min-height: auto; }
+    .char-portrait { height: 180px; }
+    .char-sprite { width: 120px; height: 120px; }
+
+    .boot-log { font-size: 9px; }
+  }
+
+  /* ============================================
+     RESPONSIVE — MOBILE (≤640px)
+     ============================================ */
+  @media (max-width: 640px) {
+
+    /* === INTRO MOBILE === */
+    .boot-log {
+      display: none;
+    }
+
+    .skip-intro {
+      top: 16px;
+      right: 16px;
+      font-size: 10px;
+      padding: 5px 10px;
+    }
+
+    .lang-switcher.intro-lang {
+      top: 16px;
+      left: 16px;
+      padding: 3px;
+    }
+
+    .lang-btn {
+      font-size: 8px;
+      padding: 4px 6px;
+      gap: 4px;
+    }
+
+    .lang-btn .flag {
+      width: 14px;
+      height: 10px;
+    }
+
+    .lang-switcher.menu-lang {
+      margin-left: 0;
+    }
+
+    .studio-mark {
+      font-size: 8px;
+      letter-spacing: 0.3em;
+      margin-bottom: 20px;
+    }
+
+    .intro-logo {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 16px;
+    }
+
+    .intro-title {
+      font-size: clamp(40px, 14vw, 72px);
+      letter-spacing: 0.02em;
+    }
+
+    .intro-tagline {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      margin-bottom: 40px;
+    }
+
+    .press-start {
+      font-size: 14px;
+      letter-spacing: 0.15em;
+    }
+
+    .press-start .key-box {
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+
+    .loading-bar-container { width: 240px; }
+
+    .intro-footer {
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 7px;
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+
+    /* === MENU MOBILE — DENSE LAYOUT === */
+    body { padding: 0; }
+    #menu .menu-container { padding: 8px; }
+
+    /* Header: more compact, single row */
+    header {
+      padding: 8px 12px;
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 14px;
+      gap: 8px;
+    }
+
+    .logo-icon {
+      width: 22px;
+      height: 22px;
+    }
+
+    .hud-stats {
+      gap: 10px;
+      width: auto;
+      justify-content: flex-end;
+      margin-left: auto;
+    }
+
+    .stat-block { gap: 2px; }
+    .stat-label { font-size: 6px; }
+    .stat-value { font-size: 7px; }
+
+    /* Title block: compact */
+    .title-block {
+      margin-bottom: 12px;
+    }
+
+    .level-tag {
+      font-size: 7px;
+      letter-spacing: 0.15em;
+      margin-bottom: 6px;
+      gap: 6px;
+    }
+
+    .level-tag::before, .level-tag::after {
+      width: 14px;
+    }
+
+    .title-block h1 {
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      text-shadow:
+        0 0 8px rgba(0, 231, 255, 0.2),
+        2px 2px 0 rgba(255, 46, 90, 0.15),
+        -2px -2px 0 rgba(0, 231, 255, 0.15);
+    }
+
+    .subtitle {
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      margin-top: 6px;
+      padding: 0 8px;
+    }
+
+    /* Scroll indicator */
+    .mobile-scroll-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--mage);
+      letter-spacing: 0.15em;
+      padding: 6px 0;
+      margin-bottom: 8px;
+      text-shadow: 0 0 8px var(--mage);
+      animation: float 2s ease-in-out infinite;
+    }
+
+    .mobile-scroll-hint::before,
+    .mobile-scroll-hint::after {
+      content: '▼';
+      animation: blink-fast 1.2s infinite;
+    }
+
+    /* Cards: compact mobile layout */
+    .grid { gap: 12px; }
+
+    .character {
+      clip-path: polygon(
+        0 0,
+        calc(100% - 14px) 0,
+        100% 14px,
+        100% 100%,
+        14px 100%,
+        0 calc(100% - 14px)
+      );
+    }
+
+    .character:hover {
+      transform: none;
+    }
+
+    .char-banner {
+      padding: 7px 12px;
+      font-size: 8px;
+      letter-spacing: 0.1em;
+    }
+
+    .char-banner .class-num { font-size: 7px; }
+
+    .corner-accent {
+      width: 50px;
+      height: 50px;
+    }
+
+    /* Smaller portrait on mobile to save space */
+    .char-portrait {
+      height: 110px;
+    }
+
+    .char-sprite {
+      width: 80px;
+      height: 80px;
+    }
+
+    .char-info {
+      padding: 12px 14px;
+      gap: 8px;
+    }
+
+    .char-role {
+      font-size: 7px;
+      letter-spacing: 0.15em;
+      margin-bottom: 2px;
+    }
+
+    .char-name {
+      font-size: 22px;
+      margin-bottom: 2px;
+    }
+
+    .char-tagline { font-size: 9px; }
+
+    .char-desc {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .char-stats {
+      padding: 8px 10px;
+      gap: 5px;
+    }
+
+    .stats-header {
+      font-size: 6px;
+    }
+
+    .stat-row {
+      gap: 8px;
+      font-size: 8px;
+    }
+
+    .stat-name {
+      width: 52px;
+      font-size: 8px;
+    }
+
+    .stat-bar { height: 7px; }
+    .stat-num { width: 28px; font-size: 8px; }
+
+    .ability {
+      font-size: 7px;
+      padding: 3px 6px;
+    }
+
+    .select-btn {
+      margin: 0 14px 14px;
+      padding: 12px 14px;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+    }
+
+    .press-key {
+      display: none;
+    }
+
+    /* Footer: minimal */
+    footer {
+      flex-direction: column;
+      gap: 8px;
+      padding: 10px;
+      text-align: center;
+      font-size: 7px;
+      letter-spacing: 0.1em;
+      margin-top: 12px;
+    }
+
+    .footer-controls {
+      display: none;
+    }
+
+    footer .socials {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+  }
+
+  /* ============================================
+     RESPONSIVE — VERY SMALL MOBILE (≤380px)
+     ============================================ */
+  @media (max-width: 380px) {
+    .intro-title { font-size: 36px; }
+    .intro-tagline { font-size: 9px; }
+    .press-start { font-size: 12px; }
+
+    header { padding: 6px 10px; }
+    .logo { font-size: 12px; }
+    .logo-icon { width: 20px; height: 20px; }
+    .hud-stats { gap: 8px; }
+
+    .title-block h1 { font-size: 22px; }
+    .subtitle { font-size: 8px; }
+    .char-name { font-size: 20px; }
+    .char-portrait { height: 100px; }
+    .char-sprite { width: 70px; height: 70px; }
+    .char-desc { font-size: 11px; }
+  }
+
+  /* ============================================
+     LANDSCAPE PHONE (low height)
+     ============================================ */
+  @media (max-height: 500px) and (orientation: landscape) {
+    .intro-content { transform: scale(0.7); }
+    .boot-log { font-size: 8px; }
+    .studio-mark { margin-bottom: 12px; }
+    .intro-logo { width: 50px; height: 50px; margin-bottom: 8px; }
+    .intro-title { font-size: 48px; }
+    .intro-tagline { margin-bottom: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     INTRO SCREEN
+     ============================================ -->
+<div id="intro">
+
+  <button class="skip-intro" onclick="exitIntro()" data-i18n="skip">SKIP ▸▸</button>
+
+  <div class="lang-switcher intro-lang">
+    <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">
+      <span class="flag">
+        <svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg">
+          <rect width="1" height="2" fill="#0055A4"/>
+          <rect x="1" width="1" height="2" fill="#FFFFFF"/>
+          <rect x="2" width="1" height="2" fill="#EF4135"/>
+        </svg>
+      </span>
+      FR
+    </button>
+    <button class="lang-btn active" data-lang="en" onclick="setLang('en')">
+      <span class="flag">
+        <svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+          <clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+          <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+          <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+          <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/>
+          <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+          <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+        </svg>
+      </span>
+      EN
+    </button>
+  </div>
+
+  <!-- Boot log left side -->
+  <div class="boot-log">
+    <div class="line">&gt; <span data-i18n="boot1">INITIALIZING SYSTEM</span><span class="ok">...OK</span></div>
+    <div class="line">&gt; <span data-i18n="boot2">LOADING ASSETS</span><span class="ok">...OK</span></div>
+    <div class="line">&gt; <span data-i18n="boot3">CONNECTING TO HAXLR.IO</span><span class="ok">...OK</span></div>
+    <div class="line">&gt; <span data-i18n="boot4">AUTHENTICATING USER</span><span class="ok">...OK</span></div>
+    <div class="line">&gt; <span data-i18n="boot5">LOADING CLASSES [3/3]</span><span class="ok">...OK</span></div>
+    <div class="line">&gt; <span data-i18n="boot6">RENDERING UI</span><span class="ok">...OK</span></div>
+    <div class="line">&gt; <span data-i18n="boot7">READY</span><span class="warn"> ✓</span></div>
+    <div class="line">&gt; <span data-i18n="boot8">AWAITING INPUT_</span></div>
+  </div>
+
+  <div class="intro-content">
+
+    <div class="studio-mark" data-i18n="studio">AN INDIE PRODUCTION</div>
+
+    <div class="intro-logo">
+      <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2">
+        <polygon points="40,6 68,20 68,52 40,66 12,52 12,20"/>
+        <polygon points="40,18 56,26 56,42 40,50 24,42 24,26" fill="currentColor" opacity="0.3"/>
+        <circle cx="40" cy="34" r="3" fill="currentColor"/>
+      </svg>
+    </div>
+
+    <h1 class="intro-title">HAXLR<span class="dot">.</span><span class="ext">IO</span></h1>
+
+    <div class="intro-tagline" data-i18n="tagline">SYSTEMS · WORLDS · ARTIFACTS</div>
+
+    <div class="press-start" id="pressStart">
+      <span class="desktop-only">
+        <span data-i18n="pressPart1">PRESS</span>
+        <span class="key-box">START</span>
+        <span data-i18n="pressPart2">TO PLAY</span>
+      </span>
+      <span class="mobile-only" data-i18n="tapToPlay">TAP TO PLAY</span>
+    </div>
+
+    <div class="loading-section" id="loadingSection">
+      <div class="loading-label" data-i18n="loading">LOADING...</div>
+      <div class="loading-bar-container">
+        <div class="loading-bar-fill"></div>
+      </div>
+      <div class="loading-percent" id="loadingPercent">0%</div>
+    </div>
+
+  </div>
+
+  <div class="intro-scanlines"></div>
+  <div class="intro-vignette"></div>
+
+  <div class="intro-footer">
+    <span class="copyright" data-i18n="introCopyright">© 2026 HAXLR.IO · INDIE STUDIO</span>
+    <span class="version">v2.6 · BUILD 2026.05</span>
+  </div>
+
+</div>
+
+
+<!-- ============================================
+     MAIN MENU
+     ============================================ -->
+<div id="menu">
+
+  <div class="menu-scanline"></div>
+  <div class="menu-noise"></div>
+
+  <div class="menu-container">
+
+    <header class="menu-anim menu-anim-1">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="16,3 28,9 28,23 16,29 4,23 4,9"/>
+            <polygon points="16,9 23,12.5 23,19.5 16,23 9,19.5 9,12.5" fill="currentColor" opacity="0.3"/>
+            <circle cx="16" cy="16" r="2" fill="currentColor"/>
+          </svg>
+        </div>
+        HAXLR<span>.IO</span>
+      </div>
+
+      <div class="hud-stats">
+        <div class="stat-block"><span class="stat-label">▸ <span data-i18n="player">PLAYER</span></span><span class="stat-value">LVL_99</span></div>
+        <div class="stat-block"><span class="stat-label">▸ <span data-i18n="quests">QUESTS</span></span><span class="stat-value gold">06 / 12</span></div>
+        <div class="stat-block"><span class="stat-label">▸ <span data-i18n="status">STATUS</span></span><span class="stat-value"><span class="live-dot"></span><span data-i18n="online">ONLINE</span></span></div>
+        <div class="stat-block hide-mobile"><span class="stat-label">▸ <span data-i18n="region">REGION</span></span><span class="stat-value">EU_WEST</span></div>
+        <div class="lang-switcher menu-lang">
+          <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">
+            <span class="flag">
+              <svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg">
+                <rect width="1" height="2" fill="#0055A4"/>
+                <rect x="1" width="1" height="2" fill="#FFFFFF"/>
+                <rect x="2" width="1" height="2" fill="#EF4135"/>
+              </svg>
+            </span>
+            FR
+          </button>
+          <button class="lang-btn active" data-lang="en" onclick="setLang('en')">
+            <span class="flag">
+              <svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+                <clipPath id="t2"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+                <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t2)" stroke="#C8102E" stroke-width="4"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+              </svg>
+            </span>
+            EN
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+
+      <div class="title-block">
+        <div class="level-tag menu-anim menu-anim-2" data-i18n="characterSelect">CHARACTER SELECT — 2026</div>
+        <h1 class="menu-anim menu-anim-2"><span data-i18n="chooseYour">CHOOSE YOUR</span> <span class="accent" data-i18n="class">CLASS</span></h1>
+        <div class="subtitle menu-anim menu-anim-3">
+          &gt; <span class="desktop-only" data-i18n="subtitleDesktop">Three paths. One universe. Press SELECT to continue</span><span class="mobile-only" data-i18n="subtitleMobile">Three paths. Tap to choose</span><span class="blink-cursor"></span>
+        </div>
+      </div>
+
+      <div class="mobile-scroll-hint menu-anim menu-anim-3" data-i18n="scroll">SCROLL</div>
+
+      <div class="grid">
+
+        <!-- WARRIOR -->
+        <a href="https://80.lv/talent/p/axel-guedj" target="_blank" rel="noopener" class="character char-warrior menu-anim menu-anim-3">
+          <div class="corner-accent"></div>
+          <div class="char-banner">
+            <div class="banner-id"><span class="id-dot"></span><span>CLASS_A · <span data-i18n="warriorClass">WARRIOR</span></span></div>
+            <span class="class-num">01 / 03</span>
+          </div>
+          <div class="char-portrait">
+            <span class="data-particle p1">[CV.pdf]</span>
+            <span class="data-particle p2">+85 XP</span>
+            <span class="data-particle p3">{skill}</span>
+            <span class="data-particle p4">06 wins</span>
+            <div class="char-sprite">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 14 Q22 8 32 8 Q42 8 42 14 L42 22 Q42 26 38 28 L38 32 L26 32 L26 28 Q22 26 22 22 Z"/>
+                <line x1="25" y1="20" x2="29" y2="20" stroke-width="2.5"/>
+                <line x1="35" y1="20" x2="39" y2="20" stroke-width="2.5"/>
+                <path d="M32 8 Q32 4 35 2 Q38 4 36 7"/>
+                <path d="M22 32 L18 38 L20 50 L26 54 L26 58 L20 58 M42 32 L46 38 L44 50 L38 54 L38 58 L44 58"/>
+                <path d="M26 32 L26 50 L38 50 L38 32"/>
+                <circle cx="32" cy="40" r="3" fill="currentColor"/>
+                <line x1="48" y1="18" x2="56" y2="10" stroke-width="2"/>
+                <line x1="46" y1="20" x2="50" y2="24"/>
+                <line x1="54" y1="8" x2="58" y2="12"/>
+              </svg>
+            </div>
+          </div>
+          <div class="char-info">
+            <div>
+              <div class="char-role" data-i18n="warriorRole">▸ THE RECRUITER PATH</div>
+              <div class="char-name" data-i18n-html="warriorName">HIRE <span class="accent">ME</span></div>
+              <div class="char-tagline">[ game_designer.exe ]</div>
+            </div>
+            <div class="char-desc" data-i18n="warriorDesc">Veteran systems designer. Specialized in web platforms, multiplayer, and player experience. Open to missions.</div>
+            <div class="char-stats">
+              <div class="stats-header"><span>▸ <span data-i18n="stats">STATS</span></span><span class="max">MAX_100</span></div>
+              <div class="stat-row"><span class="stat-name" data-i18n="portfolio">PORTFOLIO</span><div class="stat-bar"><div class="stat-fill" style="width: 92%"></div></div><span class="stat-num">92</span></div>
+              <div class="stat-row"><span class="stat-name" data-i18n="experience">EXPERIENCE</span><div class="stat-bar"><div class="stat-fill" style="width: 78%"></div></div><span class="stat-num">78</span></div>
+              <div class="stat-row"><span class="stat-name" data-i18n="skills">SKILLS</span><div class="stat-bar"><div class="stat-fill" style="width: 88%"></div></div><span class="stat-num">88</span></div>
+            </div>
+            <div class="char-abilities">
+              <span class="ability">+CV</span><span class="ability">+PORTFOLIO</span><span class="ability">+CASE_STUDIES</span>
+            </div>
+          </div>
+          <div class="select-btn" data-i18n="select">SELECT</div>
+          <div class="press-key"><span class="key-button">1</span><span data-i18n="pressEnter">PRESS TO ENTER</span></div>
+        </a>
+
+        <!-- MAGE -->
+        <a href="https://round-93fc6.web.app/" target="_blank" rel="noopener" class="character char-mage menu-anim menu-anim-4">
+          <div class="corner-accent"></div>
+          <div class="char-banner">
+            <div class="banner-id"><span class="id-dot"></span><span>CLASS_B · <span data-i18n="mageClass">MAGE</span></span></div>
+            <span class="class-num">02 / 03</span>
+          </div>
+          <div class="char-portrait">
+            <span class="data-particle p1">{p2p}</span>
+            <span class="data-particle p2">+MANA</span>
+            <span class="data-particle p3">[.io]</span>
+            <span class="data-particle p4">∞ FUN</span>
+            <div class="char-sprite">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 22 L32 4 L42 22 Z"/>
+                <circle cx="30" cy="14" r="1" fill="currentColor"/>
+                <circle cx="34" cy="18" r="1" fill="currentColor"/>
+                <path d="M18 22 L46 22 L46 24 L18 24 Z" fill="currentColor" opacity="0.3"/>
+                <ellipse cx="32" cy="28" rx="6" ry="4" fill="currentColor" opacity="0.2"/>
+                <circle cx="29" cy="28" r="1" fill="currentColor"/>
+                <circle cx="35" cy="28" r="1" fill="currentColor"/>
+                <path d="M24 32 L18 56 L24 58 L24 60 M40 32 L46 56 L40 58 L40 60"/>
+                <path d="M24 32 L40 32 L42 60 L22 60 Z"/>
+                <line x1="22" y1="44" x2="42" y2="44" stroke-width="2"/>
+                <line x1="50" y1="56" x2="54" y2="14" stroke-width="2"/>
+                <circle cx="55" cy="12" r="4" fill="currentColor" opacity="0.3"/>
+                <circle cx="55" cy="12" r="4"/>
+                <line x1="53" y1="11" x2="57" y2="11"/>
+                <line x1="55" y1="9" x2="55" y2="13"/>
+              </svg>
+            </div>
+          </div>
+          <div class="char-info">
+            <div>
+              <div class="char-role" data-i18n="mageRole">▸ THE PLAYER PATH</div>
+              <div class="char-name" data-i18n-html="mageName">PLAY <span class="accent">NOW</span></div>
+              <div class="char-tagline">[ arcade.exe ]</div>
+            </div>
+            <div class="char-desc" data-i18n="mageDesc">Enter the arcade. Browser-native games, P2P experiments, upcoming .io titles. No install, no signup, pure play.</div>
+            <div class="char-stats">
+              <div class="stats-header"><span>▸ <span data-i18n="stats2">STATS</span></span><span class="max">MAX_100</span></div>
+              <div class="stat-row"><span class="stat-name" data-i18n="fun">FUN</span><div class="stat-bar"><div class="stat-fill" style="width: 99%"></div></div><span class="stat-num">99</span></div>
+              <div class="stat-row"><span class="stat-name" data-i18n="speed">SPEED</span><div class="stat-bar"><div class="stat-fill" style="width: 95%"></div></div><span class="stat-num">95</span></div>
+              <div class="stat-row"><span class="stat-name" data-i18n="magic">MAGIC</span><div class="stat-bar"><div class="stat-fill" style="width: 92%"></div></div><span class="stat-num">92</span></div>
+            </div>
+            <div class="char-abilities">
+              <span class="ability">+P2P_GAME</span><span class="ability">+.IO_TITLES</span><span class="ability">+DEVLOGS</span>
+            </div>
+          </div>
+          <div class="select-btn" data-i18n="select2">SELECT</div>
+          <div class="press-key"><span class="key-button">2</span><span data-i18n="pressEnter2">PRESS TO ENTER</span></div>
+        </a>
+
+        <!-- ROGUE -->
+        <a href="http://www.punimalz.com/" target="_blank" rel="noopener" class="character char-rogue menu-anim menu-anim-5">
+          <div class="corner-accent"></div>
+          <div class="char-banner">
+            <div class="banner-id"><span class="id-dot"></span><span>CLASS_C · <span data-i18n="rogueClass">ROGUE</span></span></div>
+            <span class="class-num">03 / 03</span>
+          </div>
+          <div class="char-portrait">
+            <span class="data-particle p1">+LOOT</span>
+            <span class="data-particle p2">[tee.png]</span>
+            <span class="data-particle p3">RARE</span>
+            <span class="data-particle p4">$$$</span>
+            <div class="char-sprite">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 22 Q20 10 32 8 Q44 10 44 22 L44 30 L40 32 L24 32 L20 30 Z"/>
+                <path d="M32 8 L34 4 L36 6"/>
+                <ellipse cx="32" cy="26" rx="6" ry="4" fill="currentColor" opacity="0.3"/>
+                <circle cx="29" cy="26" r="1" fill="currentColor"/>
+                <circle cx="35" cy="26" r="1" fill="currentColor"/>
+                <path d="M24 32 L16 48 L18 58 L24 60"/>
+                <path d="M40 32 L48 48 L46 58 L40 60"/>
+                <path d="M24 32 L40 32 L42 60 L22 60 Z"/>
+                <ellipse cx="48" cy="44" rx="8" ry="9"/>
+                <path d="M44 36 Q48 33 52 36"/>
+                <line x1="44" y1="38" x2="52" y2="38" stroke-width="2"/>
+                <text x="48" y="48" font-family="monospace" font-size="8" fill="currentColor" text-anchor="middle" stroke="none">$</text>
+                <line x1="22" y1="42" x2="42" y2="42" stroke-width="2"/>
+                <circle cx="28" cy="42" r="1.5" fill="currentColor"/>
+                <circle cx="36" cy="42" r="1.5" fill="currentColor"/>
+              </svg>
+            </div>
+          </div>
+          <div class="char-info">
+            <div>
+              <div class="char-role" data-i18n="rogueRole">▸ THE COLLECTOR PATH</div>
+              <div class="char-name" data-i18n-html="rogueName">SHOP <span class="accent">PUNIMALZ</span></div>
+              <div class="char-tagline">[ loot_vault.exe ]</div>
+            </div>
+            <div class="char-desc" data-i18n="rogueDesc">Raid the merch vault. Original character designs on tees, hoodies, and prints. Print-on-demand, worldwide shipping.</div>
+            <div class="char-stats">
+              <div class="stats-header"><span>▸ <span data-i18n="stats3">STATS</span></span><span class="max">MAX_100</span></div>
+              <div class="stat-row"><span class="stat-name" data-i18n="loot">LOOT</span><div class="stat-bar"><div class="stat-fill" style="width: 100%"></div></div><span class="stat-num">∞</span></div>
+              <div class="stat-row"><span class="stat-name" data-i18n="rarity">RARITY</span><div class="stat-bar"><div class="stat-fill" style="width: 87%"></div></div><span class="stat-num">87</span></div>
+              <div class="stat-row"><span class="stat-name" data-i18n="style">STYLE</span><div class="stat-bar"><div class="stat-fill" style="width: 94%"></div></div><span class="stat-num">94</span></div>
+            </div>
+            <div class="char-abilities">
+              <span class="ability">+APPAREL</span><span class="ability">+PRINTS</span><span class="ability">+WORLDWIDE</span>
+            </div>
+          </div>
+          <div class="select-btn" data-i18n="select3">SELECT</div>
+          <div class="press-key"><span class="key-button">3</span><span data-i18n="pressEnter3">PRESS TO ENTER</span></div>
+        </a>
+
+      </div>
+
+    </main>
+
+    <footer class="menu-anim menu-anim-5">
+      <div class="footer-controls">
+        <span class="ctrl-btn"><span class="key">◄ ►</span><span data-i18n="navigate">NAVIGATE</span></span>
+        <span class="ctrl-btn"><span class="key">ENTER</span><span data-i18n="selectFooter">SELECT</span></span>
+        <span class="ctrl-btn"><span class="key">ESC</span><span data-i18n="back">BACK</span></span>
+      </div>
+      <div data-i18n="footerCopyright">© 2026 HAXLR.IO · v2.6</div>
+      <div class="socials">
+        <a href="#">TWITTER</a><a href="#">ITCH.IO</a><a href="#">DISCORD</a><a href="#">YOUTUBE</a>
+      </div>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+  // ============================================
+  // LANGUAGE SYSTEM
+  // ============================================
+  const translations = {
+    en: {
+      // Intro
+      skip: 'SKIP ▸▸',
+      boot1: 'INITIALIZING SYSTEM',
+      boot2: 'LOADING ASSETS',
+      boot3: 'CONNECTING TO HAXLR.IO',
+      boot4: 'AUTHENTICATING USER',
+      boot5: 'LOADING CLASSES [3/3]',
+      boot6: 'RENDERING UI',
+      boot7: 'READY',
+      boot8: 'AWAITING INPUT_',
+      studio: 'AN INDIE PRODUCTION',
+      tagline: 'SYSTEMS · WORLDS · ARTIFACTS',
+      pressPart1: 'PRESS',
+      pressPart2: 'TO PLAY',
+      tapToPlay: 'TAP TO PLAY',
+      loading: 'LOADING...',
+      introCopyright: '© 2026 HAXLR.IO · INDIE STUDIO',
+      // Header
+      player: 'PLAYER',
+      quests: 'QUESTS',
+      status: 'STATUS',
+      online: 'ONLINE',
+      region: 'REGION',
+      // Title
+      characterSelect: 'CHARACTER SELECT — 2026',
+      chooseYour: 'CHOOSE YOUR',
+      class: 'CLASS',
+      subtitleDesktop: 'Three paths. One universe. Press SELECT to continue',
+      subtitleMobile: 'Three paths. Tap to choose',
+      scroll: 'SCROLL',
+      // Cards
+      warriorClass: 'WARRIOR',
+      warriorRole: '▸ THE RECRUITER PATH',
+      warriorName: 'HIRE <span class="accent">ME</span>',
+      warriorDesc: 'Veteran systems designer. Specialized in web platforms, multiplayer, and player experience. Open to missions.',
+      mageClass: 'MAGE',
+      mageRole: '▸ THE PLAYER PATH',
+      mageName: 'PLAY <span class="accent">NOW</span>',
+      mageDesc: 'Enter the arcade. Browser-native games, P2P experiments, upcoming .io titles. No install, no signup, pure play.',
+      rogueClass: 'ROGUE',
+      rogueRole: '▸ THE COLLECTOR PATH',
+      rogueName: 'SHOP <span class="accent">PUNIMALZ</span>',
+      rogueDesc: 'Raid the merch vault. Original character designs on tees, hoodies, and prints. Print-on-demand, worldwide shipping.',
+      // Stats
+      stats: 'STATS', stats2: 'STATS', stats3: 'STATS',
+      portfolio: 'PORTFOLIO',
+      experience: 'EXPERIENCE',
+      skills: 'SKILLS',
+      fun: 'FUN',
+      speed: 'SPEED',
+      magic: 'MAGIC',
+      loot: 'LOOT',
+      rarity: 'RARITY',
+      style: 'STYLE',
+      // Buttons
+      select: 'SELECT', select2: 'SELECT', select3: 'SELECT',
+      pressEnter: 'PRESS TO ENTER',
+      pressEnter2: 'PRESS TO ENTER',
+      pressEnter3: 'PRESS TO ENTER',
+      // Footer
+      navigate: 'NAVIGATE',
+      selectFooter: 'SELECT',
+      back: 'BACK',
+      footerCopyright: '© 2026 HAXLR.IO · v2.6'
+    },
+    fr: {
+      // Intro
+      skip: 'PASSER ▸▸',
+      boot1: 'INITIALISATION DU SYSTÈME',
+      boot2: 'CHARGEMENT DES RESSOURCES',
+      boot3: 'CONNEXION À HAXLR.IO',
+      boot4: 'AUTHENTIFICATION',
+      boot5: 'CHARGEMENT DES CLASSES [3/3]',
+      boot6: 'AFFICHAGE DE L\'INTERFACE',
+      boot7: 'PRÊT',
+      boot8: 'EN ATTENTE_',
+      studio: 'UNE PRODUCTION INDÉPENDANTE',
+      tagline: 'SYSTÈMES · MONDES · CRÉATIONS',
+      pressPart1: 'APPUYEZ SUR',
+      pressPart2: 'POUR JOUER',
+      tapToPlay: 'TOUCHEZ POUR JOUER',
+      loading: 'CHARGEMENT...',
+      introCopyright: '© 2026 HAXLR.IO · STUDIO INDÉPENDANT',
+      // Header
+      player: 'JOUEUR',
+      quests: 'QUÊTES',
+      status: 'STATUT',
+      online: 'EN LIGNE',
+      region: 'RÉGION',
+      // Title
+      characterSelect: 'SÉLECTION DE PERSONNAGE — 2026',
+      chooseYour: 'CHOISIS TA',
+      class: 'CLASSE',
+      subtitleDesktop: 'Trois voies. Un univers. Appuyez sur SELECT pour continuer',
+      subtitleMobile: 'Trois voies. Touchez pour choisir',
+      scroll: 'DÉFILER',
+      // Cards
+      warriorClass: 'GUERRIER',
+      warriorRole: '▸ LA VOIE DU RECRUTEMENT',
+      warriorName: 'EMBAUCHE-<span class="accent">MOI</span>',
+      warriorDesc: 'Game designer vétéran. Spécialisé dans les plateformes web, le multijoueur et l\'expérience joueur. Disponible pour des missions.',
+      mageClass: 'MAGE',
+      mageRole: '▸ LA VOIE DU JOUEUR',
+      mageName: 'JOUER <span class="accent">MAINTENANT</span>',
+      mageDesc: 'Entre dans l\'arcade. Jeux web natifs, expériences P2P, futurs titres .io. Sans installation, sans inscription. Que du jeu.',
+      rogueClass: 'VOLEUR',
+      rogueRole: '▸ LA VOIE DU COLLECTIONNEUR',
+      rogueName: 'BOUTIQUE <span class="accent">PUNIMALZ</span>',
+      rogueDesc: 'Pille le coffre au merch. Designs originaux sur tee-shirts, sweats et prints. Impression à la demande, livraison mondiale.',
+      // Stats
+      stats: 'STATS', stats2: 'STATS', stats3: 'STATS',
+      portfolio: 'PORTFOLIO',
+      experience: 'EXPÉRIENCE',
+      skills: 'COMPÉTENCES',
+      fun: 'FUN',
+      speed: 'VITESSE',
+      magic: 'MAGIE',
+      loot: 'BUTIN',
+      rarity: 'RARETÉ',
+      style: 'STYLE',
+      // Buttons
+      select: 'CHOISIR', select2: 'CHOISIR', select3: 'CHOISIR',
+      pressEnter: 'APPUYEZ POUR ENTRER',
+      pressEnter2: 'APPUYEZ POUR ENTRER',
+      pressEnter3: 'APPUYEZ POUR ENTRER',
+      // Footer
+      navigate: 'NAVIGUER',
+      selectFooter: 'CHOISIR',
+      back: 'RETOUR',
+      footerCopyright: '© 2026 HAXLR.IO · v2.6'
+    }
+  };
+
+  function setLang(lang) {
+    if (!translations[lang]) return;
+
+    // Update text content for all data-i18n elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang][key] !== undefined) {
+        el.textContent = translations[lang][key];
+      }
+    });
+
+    // Update HTML content for elements that need inner HTML (with span etc)
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.getAttribute('data-i18n-html');
+      if (translations[lang][key] !== undefined) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+
+    // Update active state on language buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+
+    // Update html lang attribute
+    document.documentElement.setAttribute('lang', lang);
+
+    // Save preference
+    try { localStorage.setItem('haxlr-lang', lang); } catch(e) {}
+  }
+
+  // Init language: from storage, or browser language, or default to English
+  (function initLang() {
+    let savedLang = null;
+    try { savedLang = localStorage.getItem('haxlr-lang'); } catch(e) {}
+    const browserLang = (navigator.language || 'en').slice(0, 2);
+    const initialLang = savedLang || (browserLang === 'fr' ? 'fr' : 'en');
+    setLang(initialLang);
+  })();
+
+  // ============================================
+  // INTRO LOGIC
+  // ============================================
+  let introExited = false;
+
+  function exitIntro() {
+    if (introExited) return;
+    introExited = true;
+
+    const intro = document.getElementById('intro');
+    const menu = document.getElementById('menu');
+    const pressStart = document.getElementById('pressStart');
+    const loadingSection = document.getElementById('loadingSection');
+    const loadingPercent = document.getElementById('loadingPercent');
+
+    // Hide press start, show loading
+    pressStart.style.animation = 'none';
+    pressStart.style.opacity = '0.3';
+    loadingSection.classList.add('active');
+
+    // Animate percent counter
+    let pct = 0;
+    const counter = setInterval(() => {
+      pct += Math.random() * 12;
+      if (pct >= 100) {
+        pct = 100;
+        clearInterval(counter);
+      }
+      loadingPercent.textContent = Math.floor(pct) + '%';
+    }, 80);
+
+    // After loading bar (1.5s), trigger flash + glitch out
+    setTimeout(() => {
+      intro.classList.add('flash');
+    }, 1500);
+
+    setTimeout(() => {
+      intro.classList.add('exiting');
+    }, 1700);
+
+    // Fade intro out
+    setTimeout(() => {
+      intro.classList.add('fade-out');
+      menu.classList.add('active');
+      document.body.classList.add('menu-active');
+    }, 2300);
+
+    // Remove intro from DOM
+    setTimeout(() => {
+      intro.style.display = 'none';
+    }, 3200);
+  }
+
+  // Trigger on intro click
+  document.getElementById('intro').addEventListener('click', (e) => {
+    if (e.target.classList.contains('skip-intro')) return;
+    if (e.target.closest('.lang-switcher')) return; // Don't exit when clicking language buttons
+    // Only allow after press-start has appeared (5.5s)
+    if (document.body.dataset.ready === '1') {
+      exitIntro();
+    }
+  });
+
+  // Allow press start after delay
+  setTimeout(() => {
+    document.body.dataset.ready = '1';
+  }, 5400);
+
+  // Keyboard: any key to start, then 1/2/3 to navigate
+  document.addEventListener('keydown', (e) => {
+    if (!introExited && document.body.dataset.ready === '1') {
+      e.preventDefault();
+      exitIntro();
+      return;
+    }
+    if (introExited) {
+      const cards = document.querySelectorAll('.character');
+      if (e.key === '1') cards[0]?.click();
+      if (e.key === '2') cards[1]?.click();
+      if (e.key === '3') cards[2]?.click();
+    }
+  });
+
+  // Character cards: open link directly without disruptive animation
+  document.querySelectorAll('.character').forEach(card => {
+    card.addEventListener('click', (e) => {
+      const href = card.getAttribute('href');
+      if (!href || href === '#') {
+        e.preventDefault();
+      }
+      // Otherwise, let the browser handle the link naturally (target="_blank" opens new tab)
+    });
+  });
+</script>
+
+</body>
+</html>
