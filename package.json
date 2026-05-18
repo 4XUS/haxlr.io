@@ -1,0 +1,11 @@
+{
+  "name": "haxlr-io",
+  "version": "1.0.0",
+  "description": "haxlr.io — Game designer hub. Three paths, one universe.",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  },
+  "keywords": ["game-design", "portfolio", "indie", "haxlr"]
+}
