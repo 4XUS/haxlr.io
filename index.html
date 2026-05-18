@@ -1925,22 +1925,14 @@
     }
   });
 
-  // Click flash on character cards, then navigate
+  // Character cards: open link directly without disruptive animation
   document.querySelectorAll('.character').forEach(card => {
     card.addEventListener('click', (e) => {
       const href = card.getAttribute('href');
-      // If it's a real link, delay navigation slightly for the select animation
-      if (href && href !== '#') {
+      if (!href || href === '#') {
         e.preventDefault();
-        card.style.animation = 'ready-pulse 0.2s ease-out 2';
-        // Open in new tab after brief select animation
-        setTimeout(() => {
-          window.open(href, '_blank', 'noopener');
-        }, 400);
-      } else {
-        e.preventDefault();
-        card.style.animation = 'ready-pulse 0.3s ease-out 2';
       }
+      // Otherwise, let the browser handle the link naturally (target="_blank" opens new tab)
     });
   });
 </script>
