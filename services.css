@@ -1,0 +1,35 @@
+.services-page .logo { text-decoration: none; }
+.service-nav { display: flex; align-items: center; gap: 24px; }
+.service-nav > a { color: var(--ink-soft); font: 10px 'JetBrains Mono', monospace; text-decoration: none; }
+.services-page main { max-width: 1180px; }
+.services-intro { padding: 32px 0; max-width: 800px; }
+.services-intro h1 { font: 900 clamp(26px, 4.5vw, 52px)/1.15 'Orbitron', sans-serif; margin: 16px 0 22px; }
+.services-intro > p:not(.section-kicker) { color: var(--ink); font-size: 24px; }
+.services-intro > .services-summary { margin-top: 12px; font-size: 19px !important; color: var(--ink-soft) !important; max-width: 650px; line-height: 1.6; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.price-card { background: linear-gradient(150deg, var(--bg-2), var(--bg-0)); border: 1px solid var(--class-dark); border-top: 0; min-width: 0; }
+.price-content { padding: 28px 24px 24px; }
+.price-card h2 { font: 700 20px 'Orbitron', sans-serif; }
+.price { color: var(--class-color); font: 700 clamp(36px, 4vw, 52px) 'Orbitron', sans-serif; margin: 22px 0; white-space: nowrap; }
+.price span { font-size: 24px; margin-left: 8px; }
+.price-content > p:not(.price) { font-size: 18px; line-height: 1.5; color: var(--ink-soft); min-height: 54px; }
+.price-content .select-btn { margin: 24px 0 0; width: 100%; font-size: 8px; letter-spacing: .05em; line-height: 1.8; min-height: 48px; border: 0; cursor: pointer; }
+.select-btn:focus-visible { outline: none; filter: brightness(1.25); box-shadow: inset 0 0 0 3px white; }
+.pricing-note { font-size: 16px; line-height: 1.5; color: var(--ink-soft); margin: 18px 0 48px; }
+.request-panel { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; padding: 36px; background: rgba(7,9,26,.9); border: 1px solid rgba(0,231,255,.25); margin-bottom: 40px; scroll-margin-top: 24px; }
+.request-intro h2 { font: 700 26px/1.35 'Orbitron', sans-serif; margin: 16px 0; }
+.request-intro p:not(.section-kicker) { font-size: 22px; line-height: 1.5; }
+.request-intro .request-detail { font-size: 18px !important; color: var(--ink-soft); margin-top: 20px; }
+#request-form { display: grid; gap: 18px; min-width: 0; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+#request-form label { display: grid; gap: 8px; font-size: 17px; font-weight: 600; min-width: 0; }
+#request-form input, #request-form textarea { width: 100%; background: var(--bg-0); border: 1px solid #4a5078; border-radius: 0; color: var(--ink); padding: 12px; font: 16px 'Rajdhani', sans-serif; }
+#request-form textarea { resize: vertical; min-height: 130px; }
+#request-form small, .form-note { color: var(--ink-soft); font-size: 15px; line-height: 1.5; font-weight: 400; }
+.form-note a { color: var(--mage); overflow-wrap: anywhere; }
+#request-form .submit-request { margin: 0; width: 100%; border: 0; min-height: 50px; font-size: 9px; letter-spacing: .05em; line-height: 1.8; cursor: pointer; }
+.selection-status { color: var(--mage); font-size: 16px; line-height: 1.5; }
+.selection-status:empty { display: none; }
+@media (max-width: 900px) { .pricing-grid { gap: 12px; } .price-content { padding: 22px 16px; } .price-card h2 { font-size: 17px; } .request-panel { gap: 24px; padding: 24px; } }
+@media (max-width: 700px) { .pricing-grid, .request-panel { grid-template-columns: 1fr; } .services-intro { padding: 24px 0; } .request-panel { padding: 22px 18px; } .service-nav { gap: 12px; } .service-nav > a { font-size: 8px; } .price-content > p:not(.price) { min-height: 0; } }
+@media (max-width: 380px) { .form-row { grid-template-columns: 1fr; } .services-page header { gap: 16px; } }

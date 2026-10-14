@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAXLR.IO — Services & tarifs</title>
+  <meta name="description" content="Demandez mes services : petit projet 33 €, moyen 133 €, gros 1 333 €. Une demande particulière ? Proposez votre budget.">
+  <meta name="theme-color" content="#03040a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpolygon points='16,3 28,9 28,23 16,29 4,23 4,9' fill='none' stroke='%2300e7ff' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;500;700;800;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/services.css">
+  <script src="/services.js" defer></script>
+</head>
+<body class="menu-active services-page">
+<div id="menu" class="active">
+  <div class="menu-container">
+    <header>
+      <a class="logo" href="/#menu" aria-label="HAXLR.IO — Accueil">HAXLR<span>.IO</span></a>
+      <div class="service-nav">
+        <a href="/#menu" data-fr="← RETOUR AU HUB" data-en="← BACK TO HUB">← RETOUR AU HUB</a>
+        <div class="lang-switcher"><button class="lang-btn active" type="button" data-language="fr" aria-pressed="true">FR</button><button class="lang-btn" type="button" data-language="en" aria-pressed="false">EN</button></div>
+      </div>
+    </header>
+    <main>
+      <div class="services-intro">
+        <p class="section-kicker" data-fr="MISSION CO-OP · SERVICES & TARIFS" data-en="CO-OP MISSION · SERVICES & PRICING">MISSION CO-OP · SERVICES & TARIFS</p>
+        <h1 data-fr="DEMANDER MES SERVICES" data-en="REQUEST MY SERVICES">DEMANDER MES SERVICES</h1>
+        <p data-fr="Vous avez l’idée. Construisons la suite." data-en="You have the idea. Let’s build what comes next.">Vous avez l’idée. Construisons la suite.</p>
+        <p class="services-summary" data-fr="Game design, expériences web et création. Choisissez le format de votre projet, puis parlons de vos besoins." data-en="Game design, web experiences and creative work. Choose your project size, then let’s discuss what you need.">Game design, expériences web et création. Choisissez le format de votre projet, puis parlons de vos besoins.</p>
+      </div>
+      <section class="pricing-grid" aria-label="Tarifs / Pricing">
+        <article class="price-card char-mage">
+          <div class="char-banner"><span>MISSION_01</span><span>SMALL</span></div>
+          <div class="price-content"><h2 data-fr="Petit projet" data-en="Small project">Petit projet</h2><p class="price">33<span>€</span></p><p data-fr="Un besoin précis, une intervention ciblée." data-en="A focused task, a targeted contribution.">Un besoin précis, une intervention ciblée.</p><button type="button" class="select-btn" data-package="small" data-fr="CHOISIR CE FORMAT" data-en="CHOOSE THIS SIZE">CHOISIR CE FORMAT</button></div>
+        </article>
+        <article class="price-card char-elements">
+          <div class="char-banner"><span>MISSION_02</span><span>MEDIUM</span></div>
+          <div class="price-content"><h2 data-fr="Moyen projet" data-en="Medium project">Moyen projet</h2><p class="price">133<span>€</span></p><p data-fr="Une idée à développer, un cap à franchir." data-en="An idea to develop, a milestone to reach.">Une idée à développer, un cap à franchir.</p><button type="button" class="select-btn" data-package="medium" data-fr="CHOISIR CE FORMAT" data-en="CHOOSE THIS SIZE">CHOISIR CE FORMAT</button></div>
+        </article>
+        <article class="price-card char-rogue">
+          <div class="char-banner"><span>MISSION_03</span><span>LARGE</span></div>
+          <div class="price-content"><h2 data-fr="Gros projet" data-en="Large project">Gros projet</h2><p class="price">1 333<span>€</span></p><p data-fr="Un projet ambitieux à construire ensemble." data-en="An ambitious project to build together.">Un projet ambitieux à construire ensemble.</p><button type="button" class="select-btn" data-package="large" data-fr="CHOISIR CE FORMAT" data-en="CHOOSE THIS SIZE">CHOISIR CE FORMAT</button></div>
+        </article>
+      </section>
+      <p class="pricing-note" data-fr="Le périmètre et les délais seront définis ensemble avant le démarrage. Aucun paiement sur cette page." data-en="Scope and timing will be agreed together before work begins. No payment is taken on this page.">Le périmètre et les délais seront définis ensemble avant le démarrage. Aucun paiement sur cette page.</p>
+      <section class="request-panel" id="demande" aria-labelledby="request-title">
+        <div class="request-intro">
+          <p class="section-kicker">CUSTOM_MISSION</p>
+          <h2 id="request-title" data-fr="Demande particulière ?" data-en="Something different in mind?">Demande particulière ?</h2>
+          <p data-fr="Entrez votre prix et je vous recontacterai." data-en="Enter your price and I’ll get back to you.">Entrez votre prix et je vous recontacterai.</p>
+          <p class="request-detail" data-fr="Présentez votre idée, vos attentes et votre calendrier. Vous pouvez aussi sélectionner l’un des trois formats ci-dessus." data-en="Tell me about your idea, expectations and timeline. You can also select one of the three sizes above.">Présentez votre idée, vos attentes et votre calendrier. Vous pouvez aussi sélectionner l’un des trois formats ci-dessus.</p>
+        </div>
+        <form id="request-form" class="char-mage">
+          <p id="selection-status" class="selection-status" role="status"></p>
+          <div class="form-row">
+            <label><span data-fr="Votre nom" data-en="Your name">Votre nom</span><input id="client-name" name="name" autocomplete="name" required maxlength="100"></label>
+            <label><span data-fr="Votre e-mail" data-en="Your email">Votre e-mail</span><input id="client-email" name="email" type="email" autocomplete="email" required maxlength="254"></label>
+          </div>
+          <label><span data-fr="Votre budget (€)" data-en="Your budget (€)">Votre budget (€)</span><input id="budget" name="budget" type="number" min="1" max="10000000" step="0.01" inputmode="decimal" placeholder="133" required aria-describedby="budget-hint"><small id="budget-hint" data-fr="Montant libre, en euros." data-en="Your proposed amount, in euros.">Montant libre, en euros.</small></label>
+          <label><span data-fr="Votre projet" data-en="Your project">Votre projet</span><textarea id="brief" name="brief" rows="5" required maxlength="3000"></textarea></label>
+          <button class="select-btn submit-request" type="submit" data-fr="PRÉPARER MA DEMANDE" data-en="PREPARE MY REQUEST">PRÉPARER MA DEMANDE</button>
+          <p class="form-note" data-fr="Ce bouton prépare un e-mail dans votre messagerie. Envoyez-le pour finaliser votre demande." data-en="This button prepares an email in your email app. Send it to complete your request.">Ce bouton prépare un e-mail dans votre messagerie. Envoyez-le pour finaliser votre demande.</p>
+          <p class="form-note"><span data-fr="Ou écrivez directement à " data-en="Or email me directly at ">Ou écrivez directement à </span><a id="contact-email" href="mailto:4xustudio@gmail.com">4xustudio@gmail.com</a></p>
+          <p id="request-status" class="selection-status" role="status"></p>
+          <noscript>Activez JavaScript pour préparer votre demande par e-mail.</noscript>
+        </form>
+      </section>
+    </main>
+    <footer><span>© 2026 HAXLR.IO</span><a href="/#menu" data-fr="RETOUR À LA SÉLECTION" data-en="BACK TO CHARACTER SELECT">RETOUR À LA SÉLECTION</a></footer>
+  </div>
+</div>
+</body>
+</html>
