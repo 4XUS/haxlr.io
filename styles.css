@@ -1714,3 +1714,55 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .network-card:last-child .network-person { left: 8px; right: auto; font-size: 8px; }
   .network-card:last-child .network-info { align-self: end; }
 }
+
+/* Business identity: the card's magenta/orange accents inside the arcade UI. */
+.profile-panel { --profile-pink: #ff54d9; --profile-orange: #ff985c; position: relative; isolation: isolate; display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(310px, 1fr); gap: 42px; margin: 0 0 42px; padding: 38px; border: 1px solid #432240; background: linear-gradient(125deg, #140e22 0%, #080a16 55%, #170b1c 100%); scroll-margin-top: 24px; }
+.profile-panel::before { content: ''; position: absolute; inset: -1px -1px auto; height: 2px; background: linear-gradient(90deg, var(--profile-pink), #8c48ff 48%, var(--profile-orange)); }
+.profile-panel::after { content: ''; position: absolute; z-index: -1; inset: 0; pointer-events: none; background: linear-gradient(132deg, transparent 60%, #ff54d908 60.1%, #ff54d908 69%, transparent 69.1%), radial-gradient(ellipse at 0 0, #ff54d90c, transparent 60%); }
+.profile-copy { min-width: 0; }
+.profile-copy > .section-kicker { color: var(--profile-pink); margin-bottom: 18px; }
+.profile-copy h2 { font: 800 clamp(24px, 2.9vw, 42px)/1.2 'Orbitron', sans-serif; letter-spacing: -.035em; }
+.profile-copy h2 > span { display: block; }
+.profile-gradient { margin-top: 7px; background: linear-gradient(100deg, #ff8ae4, #ff54d9 42%, #ffb077); color: #ff8ae4; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.profile-intro { margin-top: 20px; max-width: 560px; color: var(--ink-soft); font-size: 19px; line-height: 1.5; }
+.expertise-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 20px; list-style: none; margin-top: 28px; }
+.expertise-list li { min-width: 0; display: flex; align-items: center; gap: 12px; border-top: 1px solid #ffffff16; padding-top: 13px; font-size: 16px; font-weight: 600; }
+.expertise-icon { display: inline-flex; flex: 0 0 auto; color: #ff70dd; }
+.expertise-icon svg { width: 24px; height: 24px; }
+.expertise-number { margin-left: auto; color: #9b6e99; font: 9px 'JetBrains Mono', monospace; }
+.profile-contact { padding: 24px; align-self: center; min-width: 0; background: #03040a99; border: 1px solid #653055; border-top-color: var(--profile-pink); box-shadow: 10px 10px 0 #ff54d905; }
+.contact-kicker { display: flex; gap: 8px; align-items: center; color: var(--profile-pink); font: 9px 'JetBrains Mono', monospace; letter-spacing: .12em; }
+.contact-indicator { width: 5px; height: 5px; background: var(--profile-pink); box-shadow: 0 0 10px #ff54d950; }
+.profile-contact h3 { font: 600 22px/1.3 'Rajdhani', sans-serif; margin: 12px 0 20px; }
+.profile-contact address { font-style: normal; display: grid; gap: 16px; }
+.contact-link { display: flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; min-height: 44px; }
+.contact-link > svg { width: 20px; height: 20px; flex-shrink: 0; color: var(--profile-pink); }
+.contact-link > span:not(.contact-arrow) { min-width: 0; }
+.contact-link small { display: block; color: var(--ink-soft); font: 8px 'JetBrains Mono', monospace; letter-spacing: .08em; margin-bottom: 5px; }
+.contact-link strong { font: 600 17px 'Rajdhani', sans-serif; overflow-wrap: anywhere; }
+.contact-arrow { color: var(--ink-soft); margin-left: auto; }
+.contact-link:hover strong, .contact-link:hover .contact-arrow { color: var(--profile-pink); }
+.profile-cta { display: flex; justify-content: space-between; gap: 12px; padding: 16px 0 0; margin-top: 22px; border-top: 1px solid #ffffff20; color: #ff98df; text-decoration: none; font: 10px/1.5 'JetBrains Mono', monospace; }
+.profile-cta:hover { color: var(--profile-orange); }
+@media (max-width: 1000px) {
+  .profile-panel { grid-template-columns: minmax(0, 1fr) 300px; gap: 24px; padding: 26px; }
+  .profile-contact { padding: 20px; }
+  .profile-copy h2 { font-size: 28px; }
+  .expertise-list { gap: 12px; }
+  .expertise-list li { gap: 8px; font-size: 14px; }
+  .expertise-number { display: none; }
+}
+@media (max-width: 760px) {
+  .profile-panel { grid-template-columns: 1fr; padding: 24px; gap: 26px; margin-bottom: 32px; }
+  .profile-copy h2 { font-size: clamp(23px, 5.4vw, 36px); }
+  .profile-intro { font-size: 17px; margin-top: 16px; }
+  .expertise-list { margin-top: 22px; }
+  .profile-contact { width: 100%; }
+}
+@media (max-width: 380px) {
+  .profile-panel { padding: 19px 16px; }
+  .profile-copy h2 { font-size: 22px; }
+  .expertise-list li { align-items: flex-start; font-size: 14px; }
+  .expertise-icon svg { width: 20px; height: 20px; }
+  .profile-contact { padding: 16px; }
+}

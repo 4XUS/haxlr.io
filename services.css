@@ -33,3 +33,15 @@
 @media (max-width: 900px) { .pricing-grid { gap: 12px; } .price-content { padding: 22px 16px; } .price-card h2 { font-size: 17px; } .request-panel { gap: 24px; padding: 24px; } }
 @media (max-width: 700px) { .pricing-grid, .request-panel { grid-template-columns: 1fr; } .services-intro { padding: 24px 0; } .request-panel { padding: 22px 18px; } .service-nav { gap: 12px; } .service-nav > a { font-size: 8px; } .price-content > p:not(.price) { min-height: 0; } }
 @media (max-width: 380px) { .form-row { grid-template-columns: 1fr; } .services-page header { gap: 16px; } }
+.services-expertises { margin: 6px 0 36px; }
+.service-expertise-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid #432240; background: #140e2255; }
+.service-expertise { min-width: 0; padding: 22px; border-right: 1px solid #432240; }
+.service-expertise:last-child { border-right: 0; }
+.service-expertise h3 { font: 700 19px 'Rajdhani', sans-serif; margin: 14px 0 8px; }
+.service-expertise p { font: 16px/1.5 'Rajdhani', sans-serif; color: var(--ink-soft); }
+@media (max-width: 800px) {
+  .service-expertise-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .service-expertise:nth-child(2) { border-right: 0; }
+  .service-expertise:nth-child(-n+2) { border-bottom: 1px solid #432240; }
+}
+@media (max-width: 380px) { .service-expertise { padding: 16px; } }

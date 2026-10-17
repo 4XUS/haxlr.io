@@ -17,7 +17,7 @@ Run `npx serve .`, then visit the local URL. For the services page on a simple s
 
 ## Contact requests
 
-The form prepares a mailto email to `4xustudio@gmail.com`. Visitors must send it from their email application. No request is stored server-side. Set `CONTACT_EMAIL` in `services.js` and update the fallback link in `services.html` to change the recipient.
+The form prepares a mailto email to `axelguedj@hotmail.fr`. Visitors must send it from their email application. No request is stored server-side. Set `CONTACT_EMAIL` in `services.js` and update the fallback link in `services.html` to change the recipient.
 
 ## Deployment
 
@@ -35,3 +35,7 @@ Commits to `main` automatically deploy to the existing Vercel project.
 ## Social portraits
 
 The five portraits are served locally and lazy-loaded. Image sources, authors and licenses are available in the expandable credits beneath the cards. Cropping and monochrome treatment use CSS; original downloaded image files are retained. Brand SVGs use Simple Icons (CC0) and the LinkedIn mark. Portraits identify the public figures requested for each platform; the links lead to Axel’s own accounts.
+
+## Business contact
+
+The home page presents Axel Guedj’s business-card details and four areas of expertise. Phone links use `tel:+33695403919`; contact and service requests use `axelguedj@hotmail.fr`. Both pages include French and English copy. Share the contact panel at `https://www.haxlr.io/#contact`.

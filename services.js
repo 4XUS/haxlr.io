@@ -1,6 +1,6 @@
 'use strict';
 
-const CONTACT_EMAIL = '4xustudio@gmail.com';
+const CONTACT_EMAIL = 'axelguedj@hotmail.fr';
 const packages = {
   small: { price: 33, fr: 'Petit projet', en: 'Small project' },
   medium: { price: 133, fr: 'Moyen projet', en: 'Medium project' },
