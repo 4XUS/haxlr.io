@@ -8,6 +8,8 @@ Game-designer hub, built with HTML/CSS/JavaScript and deployed on Vercel.
 - 3LEMENTS: game in development and demo registration
 - 4XUS: the beginning of a new era
 - Services: 33 €, 133 €, 1 333 € and custom budgets
+- Social channels: Twitch, YouTube, Instagram, TikTok and LinkedIn, with platform logos and portraits
+- Share the social section directly at `https://www.haxlr.io/#reseaux`
 
 ## Preview
 
@@ -29,3 +31,7 @@ Commits to `main` automatically deploy to the existing Vercel project.
 - `services.css`: pricing page layout
 - `services.js`: FR/EN, package selection and email preparation
 - `vercel.json`: headers and clean URLs
+
+## Social portraits
+
+The five portraits are served locally and lazy-loaded. Image sources, authors and licenses are available in the expandable credits beneath the cards. Cropping and monochrome treatment use CSS; original downloaded image files are retained. Brand SVGs use Simple Icons (CC0) and the LinkedIn mark. Portraits identify the public figures requested for each platform; the links lead to Axel’s own accounts.
