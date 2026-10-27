@@ -39,3 +39,7 @@ The five portraits are served locally and lazy-loaded. Image sources, authors an
 ## Business contact
 
 The home page presents Axel Guedj’s business-card details and four areas of expertise. Phone links use `tel:+33695403919`; contact and service requests use `axelguedj@hotmail.fr`. Both pages include French and English copy. Share the contact panel at `https://www.haxlr.io/#contact`.
+
+## CV
+
+The current CV is served at `https://www.haxlr.io/cv.pdf` (file `cv.pdf` at the root) and linked from the contact panel. To update it, replace `cv.pdf` with the new version under the same name: the link used in applications stays valid.
