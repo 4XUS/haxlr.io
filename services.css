@@ -10,10 +10,17 @@
 .price-card { background: linear-gradient(150deg, var(--bg-2), var(--bg-0)); border: 1px solid var(--class-dark); border-top: 0; min-width: 0; }
 .price-content { padding: 28px 24px 24px; }
 .price-card h2 { font: 700 20px 'Orbitron', sans-serif; }
-.price { color: var(--class-color); font: 700 clamp(36px, 4vw, 52px) 'Orbitron', sans-serif; margin: 22px 0; white-space: nowrap; }
+.price-card { display: flex; flex-direction: column; }
+.price-content { flex: 1; display: flex; flex-direction: column; }
+.price-from { margin: 22px 0 6px; color: var(--ink-soft); font: 9px 'JetBrains Mono', monospace; letter-spacing: .08em; }
+.price { color: var(--class-color); font: 700 clamp(34px, 3.6vw, 48px) 'Orbitron', sans-serif; margin: 0 0 8px; white-space: nowrap; }
+.price-meta { color: var(--ink-soft); font: 9px 'JetBrains Mono', monospace; letter-spacing: .06em; margin-bottom: 18px; }
 .price span { font-size: 24px; margin-left: 8px; }
-.price-content > p:not(.price) { font-size: 18px; line-height: 1.5; color: var(--ink-soft); min-height: 54px; }
-.price-content .select-btn { margin: 24px 0 0; width: 100%; font-size: 8px; letter-spacing: .05em; line-height: 1.8; min-height: 48px; border: 0; cursor: pointer; }
+.price-desc { font-size: 18px; line-height: 1.5; color: var(--ink-soft); min-height: 54px; }
+.price-includes { list-style: none; margin: 18px 0 24px; padding: 18px 0 0; border-top: 1px solid #ffffff18; display: grid; gap: 10px; }
+.price-includes li { position: relative; padding-left: 18px; font: 500 16px/1.45 'Rajdhani', sans-serif; color: var(--ink); }
+.price-includes li::before { content: '▸'; position: absolute; left: 0; color: var(--class-color); }
+.price-content .select-btn { margin: auto 0 0; width: 100%; font-size: 8px; letter-spacing: .05em; line-height: 1.8; min-height: 48px; border: 0; cursor: pointer; }
 .select-btn:focus-visible { outline: none; filter: brightness(1.25); box-shadow: inset 0 0 0 3px white; }
 .pricing-note { font-size: 16px; line-height: 1.5; color: var(--ink-soft); margin: 18px 0 48px; }
 .request-panel { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; padding: 36px; background: rgba(7,9,26,.9); border: 1px solid rgba(0,231,255,.25); margin-bottom: 40px; scroll-margin-top: 24px; }
@@ -31,7 +38,7 @@
 .selection-status { color: var(--mage); font-size: 16px; line-height: 1.5; }
 .selection-status:empty { display: none; }
 @media (max-width: 900px) { .pricing-grid { gap: 12px; } .price-content { padding: 22px 16px; } .price-card h2 { font-size: 17px; } .request-panel { gap: 24px; padding: 24px; } }
-@media (max-width: 700px) { .pricing-grid, .request-panel { grid-template-columns: 1fr; } .services-intro { padding: 24px 0; } .request-panel { padding: 22px 18px; } .service-nav { gap: 12px; } .service-nav > a { font-size: 8px; } .price-content > p:not(.price) { min-height: 0; } }
+@media (max-width: 700px) { .pricing-grid, .request-panel { grid-template-columns: 1fr; } .services-intro { padding: 24px 0; } .request-panel { padding: 22px 18px; } .service-nav { gap: 12px; } .service-nav > a { font-size: 8px; } .price-desc { min-height: 0; } }
 @media (max-width: 380px) { .form-row { grid-template-columns: 1fr; } .services-page header { gap: 16px; } }
 .services-expertises { margin: 6px 0 36px; }
 .service-expertise-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid #432240; background: #140e2255; }
@@ -45,3 +52,21 @@
   .service-expertise:nth-child(-n+2) { border-bottom: 1px solid #432240; }
 }
 @media (max-width: 380px) { .service-expertise { padding: 16px; } }
+
+.price-extras { margin: 36px 0 0; }
+.extras-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid rgba(0,231,255,.22); background: rgba(7,9,26,.6); }
+.price-extra { min-width: 0; padding: 22px; border-right: 1px solid rgba(0,231,255,.22); }
+.price-extra:last-child { border-right: 0; }
+.price-extra h3 { font: 700 18px/1.3 'Rajdhani', sans-serif; }
+.price-extra .extra-price { margin: 10px 0; color: var(--mage); font: 700 15px 'Orbitron', sans-serif; }
+.price-extra p:not(.extra-price) { font: 16px/1.5 'Rajdhani', sans-serif; color: var(--ink-soft); }
+@media (max-width: 900px) {
+  .extras-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .price-extra:nth-child(2) { border-right: 0; }
+  .price-extra:nth-child(-n+2) { border-bottom: 1px solid rgba(0,231,255,.22); }
+}
+@media (max-width: 520px) {
+  .extras-grid { grid-template-columns: 1fr; }
+  .price-extra { border-right: 0; border-bottom: 1px solid rgba(0,231,255,.22); }
+  .price-extra:last-child { border-bottom: 0; }
+}

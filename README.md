@@ -7,7 +7,7 @@ Game-designer hub, built with HTML/CSS/JavaScript and deployed on Vercel.
 - Class C / Rogue: Punimalz shop
 - 3LEMENTS: game in development and demo registration
 - 4XUS: the beginning of a new era
-- Services: 33 €, 133 €, 1 333 € and custom budgets
+- Services: AI assessment €1,490, AI automation from €2,400, custom AI assistant from €6,900 (excl. VAT), add-ons and custom budgets from €600
 - Social channels: Twitch, YouTube, Instagram, TikTok and LinkedIn, with platform logos and portraits
 - Share the social section directly at `https://www.haxlr.io/#reseaux`
 

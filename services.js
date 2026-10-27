@@ -2,10 +2,15 @@
 
 const CONTACT_EMAIL = 'axelguedj@hotmail.fr';
 const packages = {
-  small: { price: 33, fr: 'Petit projet', en: 'Small project' },
-  medium: { price: 133, fr: 'Moyen projet', en: 'Medium project' },
-  large: { price: 1333, fr: 'Gros projet', en: 'Large project' }
+  audit: { price: 1490, fixed: true, fr: 'Diagnostic IA', en: 'AI assessment' },
+  automation: { price: 2400, fr: 'Automatisation IA', en: 'AI automation' },
+  assistant: { price: 6900, fr: 'Assistant IA sur mesure', en: 'Custom AI assistant' }
 };
+
+function formatPrice(amount, lang) {
+  const value = new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(amount);
+  return `${value} ${lang === 'fr' ? 'HT' : 'excl. VAT'}`;
+}
 let language = 'fr';
 let selectedPackage = null;
 const form = document.getElementById('request-form');
@@ -19,7 +24,8 @@ function renderSelection() {
     return;
   }
   const item = packages[selectedPackage];
-  selection.textContent = `${item[language]} · ${new Intl.NumberFormat(language, { style: 'currency', currency: 'EUR' }).format(item.price)}`;
+  const prefix = item.fixed ? '' : `${language === 'fr' ? 'à partir de' : 'from'} `;
+  selection.textContent = `${item[language]} · ${prefix}${formatPrice(item.price, language)}`;
 }
 
 function setLanguage(lang) {
@@ -42,7 +48,7 @@ function setLanguage(lang) {
 function buildRequest(values, lang = language, selectionKey = selectedPackage) {
   const item = packages[selectionKey];
   const type = item ? item[lang] : (lang === 'fr' ? 'Demande particulière' : 'Custom request');
-  const price = new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR' }).format(Number(values.budget));
+  const price = formatPrice(Number(values.budget), lang);
   const subject = `HAXLR.IO — ${type} — ${price}`;
   const body = lang === 'fr'
     ? `Bonjour,\n\nJe souhaite vous confier un projet.\n\nFormat : ${type}\nBudget proposé : ${price}\nNom : ${values.name.trim()}\nE-mail : ${values.email.trim()}\n\nMon projet :\n${values.brief.trim()}\n\nMerci de me recontacter pour en discuter.`
