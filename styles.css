@@ -1175,17 +1175,24 @@
     right: 24px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    color: var(--dim);
+    color: var(--mage);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    background: none;
-    border: 1px solid var(--dim);
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(0, 231, 255, 0.55);
     padding: 6px 12px;
     cursor: pointer;
     z-index: 6;
     opacity: 0;
     transition: all 0.2s;
-    animation: boot-line 0.6s ease-out 1s forwards;
+    animation: boot-line 0.4s ease-out 0.15s forwards;
+  }
+
+  .skip-intro:focus-visible {
+    outline: none;
+    color: var(--mage);
+    border-color: var(--mage);
+    box-shadow: 0 0 12px rgba(0, 231, 255, 0.3);
   }
 
   .skip-intro:hover {
@@ -1765,4 +1772,101 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .expertise-list li { align-items: flex-start; font-size: 14px; }
   .expertise-icon svg { width: 20px; height: 20px; }
   .profile-contact { padding: 16px; }
+}
+
+/* ============================================
+   INTRO SKIP (click, key or SKIP / PASSER button)
+   ============================================ */
+#intro.skipped {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease-out;
+}
+
+/* ============================================
+   PLAYER PATH: two game choices in the MAGE card
+   ============================================ */
+.character.has-choices { cursor: default; }
+
+.path-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 18px 18px;
+}
+
+.path-choices-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--class-color);
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.path-choice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  min-height: 44px;
+  color: var(--class-color);
+  text-decoration: none;
+  border: 1px solid var(--class-color);
+  background: rgba(0, 0, 0, 0.35);
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  transition: box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.path-choice-main {
+  color: #000;
+  border-color: transparent;
+  background: linear-gradient(90deg, var(--class-color) 0%, var(--class-color-2) 100%);
+}
+
+.path-choice:hover,
+.path-choice:focus-visible {
+  outline: none;
+  box-shadow: 0 0 28px var(--class-glow), inset 0 0 12px rgba(255, 255, 255, 0.25);
+}
+
+.path-choice:not(.path-choice-main):hover,
+.path-choice:not(.path-choice-main):focus-visible {
+  background: rgba(0, 231, 255, 0.12);
+}
+
+.choice-key {
+  flex-shrink: 0;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  padding: 3px 6px;
+  border: 1px solid currentColor;
+}
+
+.choice-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+}
+
+.choice-text strong {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+}
+
+.choice-text small {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+.choice-arrow { flex-shrink: 0; font-size: 14px; }
+
+@media (prefers-reduced-motion: reduce) {
+  #intro.skipped { transition: none; }
 }

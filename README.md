@@ -3,7 +3,7 @@
 Game-designer hub, built with HTML/CSS/JavaScript and deployed on Vercel.
 
 - Class A / Warrior: portfolio and CV (80.lv)
-- Class B / Mage: playable games
+- Class B / Mage: the player path, with two choices: the free Kahoot (live quiz, 2nd project) and Round!, a peer-to-peer game (first web project)
 - Class C / Rogue: Punimalz shop
 - 3LEMENTS: game in development and demo registration
 - 4XUS: the beginning of a new era
@@ -25,7 +25,7 @@ Commits to `main` automatically deploy to the existing Vercel project.
 
 ## Structure
 
-- `index.html`: intro, character selection, projects and services entry
+- `index.html`: intro (skippable at any time by a click, any key or the SKIP / PASSER button), character selection, projects and services entry
 - `styles.css`: shared visual identity and responsive styles
 - `services.html`: pricing and request form
 - `services.css`: pricing page layout

@@ -37,7 +37,7 @@
      ============================================ -->
 <div id="intro">
 
-  <button class="skip-intro" onclick="exitIntro()" data-i18n="skip">SKIP ▸▸</button>
+  <button type="button" class="skip-intro" onclick="exitIntro()" data-i18n="skip">SKIP ▸▸</button>
 
   <div class="lang-switcher intro-lang">
     <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">
@@ -260,16 +260,16 @@
         </a>
 
         <!-- MAGE -->
-        <a href="https://round-93fc6.web.app/" target="_blank" rel="noopener" class="character char-mage menu-anim menu-anim-4">
+        <div class="character char-mage has-choices menu-anim menu-anim-4" id="player-path">
           <div class="corner-accent"></div>
           <div class="char-banner">
             <div class="banner-id"><span class="id-dot"></span><span>CLASS_B · <span data-i18n="mageClass">MAGE</span></span></div>
             <span class="class-num">02 / 03</span>
           </div>
           <div class="char-portrait">
-            <span class="data-particle p1">{p2p}</span>
-            <span class="data-particle p2">+MANA</span>
-            <span class="data-particle p3">[.io]</span>
+            <span class="data-particle p1">{quiz}</span>
+            <span class="data-particle p2">FREE</span>
+            <span class="data-particle p3">{p2p}</span>
             <span class="data-particle p4">∞ FUN</span>
             <div class="char-sprite">
               <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -297,7 +297,7 @@
               <div class="char-name" data-i18n-html="mageName">PLAY <span class="accent">NOW</span></div>
               <div class="char-tagline">[ arcade.exe ]</div>
             </div>
-            <div class="char-desc" data-i18n="mageDesc">Enter the arcade. Browser-native games, P2P experiments, upcoming .io titles. No install, no signup, pure play.</div>
+            <div class="char-desc" data-i18n="mageDesc">My free Kahoot: build a quiz and play it live with your class, your team or your friends, without paying a cent. Plus Round!, my very first web project: a peer-to-peer game. Everything runs in your browser.</div>
             <div class="char-stats">
               <div class="stats-header"><span>▸ <span data-i18n="stats2">STATS</span></span><span class="max">MAX_100</span></div>
               <div class="stat-row"><span class="stat-name" data-i18n="fun">FUN</span><div class="stat-bar"><div class="stat-fill" style="width: 99%"></div></div><span class="stat-num">99</span></div>
@@ -305,12 +305,23 @@
               <div class="stat-row"><span class="stat-name" data-i18n="magic">MAGIC</span><div class="stat-bar"><div class="stat-fill" style="width: 92%"></div></div><span class="stat-num">92</span></div>
             </div>
             <div class="char-abilities">
-              <span class="ability">+P2P_GAME</span><span class="ability">+.IO_TITLES</span><span class="ability">+DEVLOGS</span>
+              <span class="ability">+LIVE_QUIZ</span><span class="ability">+100%_FREE</span><span class="ability">+P2P_GAME</span>
             </div>
           </div>
-          <div class="select-btn" data-i18n="select2">SELECT</div>
-          <div class="press-key"><span class="key-button">2</span><span data-i18n="pressEnter2">PRESS TO ENTER</span></div>
-        </a>
+          <div class="path-choices">
+            <span class="path-choices-label" data-i18n="choicesLabel">CHOOSE YOUR GAME</span>
+            <a class="path-choice" href="https://round-93fc6.web.app/" target="_blank" rel="noopener">
+              <span class="choice-key">1</span>
+              <span class="choice-text"><strong data-i18n="choiceRound">ROUND! · P2P GAME</strong><small data-i18n="choiceRoundSub">My first web project!</small></span>
+              <span class="choice-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="path-choice path-choice-main" href="KAHOOT_URL" target="_blank" rel="noopener">
+              <span class="choice-key">2</span>
+              <span class="choice-text"><strong data-i18n="choiceQuiz">FREE KAHOOT</strong><small data-i18n="choiceQuizSub">Live quiz · 2nd project</small></span>
+              <span class="choice-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
 
         <!-- ROGUE -->
         <a href="https://punimalz.com/" target="_blank" rel="noopener" class="character char-rogue menu-anim menu-anim-5">
@@ -556,7 +567,12 @@
       mageClass: 'MAGE',
       mageRole: '▸ THE PLAYER PATH',
       mageName: 'PLAY <span class="accent">NOW</span>',
-      mageDesc: 'Enter the arcade. Browser-native games, P2P experiments, upcoming .io titles. No install, no signup, pure play.',
+      mageDesc: 'My free Kahoot: build a quiz and play it live with your class, your team or your friends, without paying a cent. Plus Round!, my very first web project: a peer-to-peer game. Everything runs in your browser.',
+      choicesLabel: 'CHOOSE YOUR GAME',
+      choiceRound: 'ROUND! · P2P GAME',
+      choiceRoundSub: 'My first web project!',
+      choiceQuiz: 'FREE KAHOOT',
+      choiceQuizSub: 'Live quiz · 2nd project',
       rogueClass: 'ROGUE',
       rogueRole: '▸ THE COLLECTOR PATH',
       rogueName: 'SHOP <span class="accent">PUNIMALZ</span>',
@@ -661,7 +677,12 @@
       mageClass: 'MAGE',
       mageRole: '▸ LA VOIE DU JOUEUR',
       mageName: 'JOUER <span class="accent">MAINTENANT</span>',
-      mageDesc: 'Entre dans l\'arcade. Jeux web natifs, expériences P2P, futurs titres .io. Sans installation, sans inscription. Que du jeu.',
+      mageDesc: 'Mon Kahoot gratuit : crée un quiz et fais jouer ta classe, ton équipe ou tes amis en direct, sans payer un centime. En bonus, Round!, mon tout premier projet web : un jeu en peer-to-peer. Tout se passe dans ton navigateur.',
+      choicesLabel: 'CHOISIS TON JEU',
+      choiceRound: 'ROUND! · JEU P2P',
+      choiceRoundSub: 'Mon 1er projet web !',
+      choiceQuiz: 'KAHOOT GRATUIT',
+      choiceQuizSub: 'Quiz en direct · 2e projet',
       rogueClass: 'VOLEUR',
       rogueRole: '▸ LA VOIE DU COLLECTIONNEUR',
       rogueName: 'BOUTIQUE <span class="accent">PUNIMALZ</span>',
@@ -735,52 +756,17 @@
   // ============================================
   let introExited = false;
 
+  // Skip the intro at any moment: one click, one key, or the SKIP / PASSER button.
   function exitIntro() {
     if (introExited) return;
     introExited = true;
 
     const intro = document.getElementById('intro');
-    const menu = document.getElementById('menu');
-    const pressStart = document.getElementById('pressStart');
-    const loadingSection = document.getElementById('loadingSection');
-    const loadingPercent = document.getElementById('loadingPercent');
-
-    // Hide press start, show loading
-    pressStart.style.animation = 'none';
-    pressStart.style.opacity = '0.3';
-    loadingSection.classList.add('active');
-
-    // Animate percent counter
-    let pct = 0;
-    const counter = setInterval(() => {
-      pct += Math.random() * 12;
-      if (pct >= 100) {
-        pct = 100;
-        clearInterval(counter);
-      }
-      loadingPercent.textContent = Math.floor(pct) + '%';
-    }, 80);
-
-    // After loading bar (1.5s), trigger flash + glitch out
-    setTimeout(() => {
-      intro.classList.add('flash');
-    }, 1500);
-
-    setTimeout(() => {
-      intro.classList.add('exiting');
-    }, 1700);
-
-    // Fade intro out
-    setTimeout(() => {
-      intro.classList.add('fade-out');
-      menu.classList.add('active');
-      document.body.classList.add('menu-active');
-    }, 2300);
-
-    // Remove intro from DOM
-    setTimeout(() => {
-      intro.style.display = 'none';
-    }, 3200);
+    intro.classList.add('skipped');
+    document.getElementById('menu').classList.add('active');
+    document.body.classList.add('menu-active');
+    window.scrollTo(0, 0);
+    setTimeout(() => { intro.style.display = 'none'; }, 300);
   }
 
   // Returning from services should go straight to the menu.
@@ -796,47 +782,44 @@
     if (['#reseaux', '#contact'].includes(location.hash)) document.querySelector(location.hash).scrollIntoView();
   }, { once: true });
 
-  // Trigger on intro click
+  // Click anywhere on the intro skips it (except the language buttons).
   document.getElementById('intro').addEventListener('click', (e) => {
-    if (e.target.classList.contains('skip-intro')) return;
-    if (e.target.closest('.lang-switcher')) return; // Don't exit when clicking language buttons
-    // Only allow after press-start has appeared (5.5s)
-    if (document.body.dataset.ready === '1') {
-      exitIntro();
-    }
+    if (e.target.closest('.lang-switcher')) return;
+    exitIntro();
   });
 
-  // Allow press start after delay
-  setTimeout(() => {
-    document.body.dataset.ready = '1';
-  }, 5400);
-
-  // Keyboard: any key to start, then 1/2/3 to navigate
+  // Keyboard: any key skips the intro, then 1-6 open the cards.
   document.addEventListener('keydown', (e) => {
-    if (!introExited && document.body.dataset.ready === '1') {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (!introExited) {
+      if (e.key === 'Tab' || e.key === 'Shift') return;
+      if (e.target.closest('.lang-switcher')) return;
       e.preventDefault();
       exitIntro();
       return;
     }
-    if (introExited && !e.ctrlKey && !e.metaKey && !e.altKey && !e.target.closest("input, textarea, select, button")) {
-      const cards = document.querySelectorAll('.character');
-      if (e.key === '1') cards[0]?.click();
-      if (e.key === '2') cards[1]?.click();
-      if (e.key === '3') cards[2]?.click();
-      if (e.key === '4') cards[3]?.click();
-      if (e.key === '5') cards[4]?.click();
-      if (e.key === '6') cards[5]?.click();
+    if (e.target.closest("input, textarea, select, button")) return;
+    const index = ['1', '2', '3', '4', '5', '6'].indexOf(e.key);
+    if (index === -1) return;
+    const card = document.querySelectorAll('.character')[index];
+    if (!card) return;
+    // Cards with several choices (player path) take focus instead of opening one link.
+    const firstChoice = card.querySelector('.path-choice');
+    if (firstChoice) {
+      card.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      firstChoice.focus({ preventScroll: true });
+    } else {
+      card.click();
     }
   });
 
   // Character cards: open link directly without disruptive animation
-  document.querySelectorAll('.character').forEach(card => {
+  document.querySelectorAll('a.character').forEach(card => {
     card.addEventListener('click', (e) => {
       const href = card.getAttribute('href');
       if (!href || href === '#') {
         e.preventDefault();
       }
-      // Otherwise, let the browser handle the link naturally (target="_blank" opens new tab)
     });
   });
 </script>
