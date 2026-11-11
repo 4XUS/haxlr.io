@@ -8,7 +8,7 @@ Game-designer hub, built with HTML/CSS/JavaScript and deployed on Vercel.
 - 3LEMENTS: game in development and demo registration
 - 4XUS: the beginning of a new era
 - Services: AI assessment €1,490, AI automation from €2,400, custom AI assistant from €6,900 (excl. VAT), add-ons and custom budgets from €600
-- Social channels: Twitch, YouTube, Instagram, TikTok, LinkedIn and Discord (invite link, "Rejoins le Discord !"), with platform logos and portraits (the Discord card shows the Discord mark until the CEO portrait is added)
+- Social channels: Twitch, YouTube, Instagram, TikTok, LinkedIn and Discord (invite link, "Rejoins le Discord !"), with platform logos and portraits (the Discord card shows co-founder Jason Citron, loaded from Wikimedia Commons, with the Discord mark as fallback)
 - Share the social section directly at `https://www.haxlr.io/#reseaux`
 
 ## Preview
