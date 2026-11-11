@@ -1671,12 +1671,17 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .network-section { margin: 52px 0 28px; scroll-margin-top: 24px; }
 .network-section .section-heading { margin-bottom: 12px; }
 .network-intro { color: var(--ink-soft); font-size: 18px; line-height: 1.5; margin-bottom: 24px; }
-.network-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.network-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
 .network-twitch { --network-color: #b793ff; }
 .network-youtube { --network-color: #ff647b; }
 .network-instagram { --network-color: #ffa3d7; }
 .network-tiktok { --network-color: #6ef5ff; }
 .network-linkedin { --network-color: #7bbcff; }
+.network-discord { --network-color: #8c96ff; }
+.network-portrait-mark { display: grid; place-items: center; background: radial-gradient(circle at 50% 45%, #5865f233 0%, #12182b 70%); }
+.network-mark-big { color: var(--network-color); opacity: .85; transition: transform .35s; }
+.network-mark-big svg { width: 72px; height: 72px; }
+.network-card:hover .network-mark-big, .network-card:focus-visible .network-mark-big { transform: scale(1.06); }
 .network-card { min-width: 0; display: flex; flex-direction: column; position: relative; text-decoration: none; color: var(--ink); background: var(--bg-1); border: 1px solid #252a49; border-top: 2px solid var(--network-color); transition: transform .2s, border-color .2s, box-shadow .2s; }
 .network-card:hover, .network-card:focus-visible { transform: translateY(-5px); border-color: var(--network-color); box-shadow: 0 10px 30px #0008; }
 .network-top { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; font: 9px 'JetBrains Mono', monospace; letter-spacing: .08em; color: var(--network-color); }
@@ -1701,10 +1706,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .portrait-credits p { margin: 8px 0; }
 .portrait-credits ul { padding-left: 18px; }
 .portrait-credits a { color: inherit; text-underline-offset: 3px; }
-@media (min-width: 641px) and (max-width: 1000px) {
-  .network-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-  .network-card { grid-column: span 2; }
-  .network-card:nth-last-child(-n+2) { grid-column: span 3; }
+@media (min-width: 641px) and (max-width: 1100px) {
+  .network-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 640px) {
   .network-section { margin-top: 36px; }
@@ -1715,11 +1718,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .network-info h3 { font-size: 15px; }
   .network-handle { font-size: 10px; }
   .network-cta { font-size: 9px; }
-  .network-card:last-child { grid-column: 1 / -1; display: grid; grid-template-columns: 120px 1fr; }
-  .network-card:last-child .network-top { grid-column: 1 / -1; }
-  .network-card:last-child .network-portrait { grid-row: span 2; height: 140px; }
-  .network-card:last-child .network-person { left: 8px; right: auto; font-size: 8px; }
-  .network-card:last-child .network-info { align-self: end; }
 }
 
 /* Business identity: the card's magenta/orange accents inside the arcade UI. */

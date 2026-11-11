@@ -8,7 +8,7 @@ Game-designer hub, built with HTML/CSS/JavaScript and deployed on Vercel.
 - 3LEMENTS: game in development and demo registration
 - 4XUS: the beginning of a new era
 - Services: AI assessment €1,490, AI automation from €2,400, custom AI assistant from €6,900 (excl. VAT), add-ons and custom budgets from €600
-- Social channels: Twitch, YouTube, Instagram, TikTok and LinkedIn, with platform logos and portraits
+- Social channels: Twitch, YouTube, Instagram, TikTok, LinkedIn and Discord (invite link, "Rejoins le Discord !"), with platform logos and portraits (the Discord card shows the Discord mark until the CEO portrait is added)
 - Share the social section directly at `https://www.haxlr.io/#reseaux`
 
 ## Preview
@@ -34,7 +34,7 @@ Commits to `main` automatically deploy to the existing Vercel project.
 
 ## Social portraits
 
-The five portraits are served locally and lazy-loaded. Image sources, authors and licenses are available in the expandable credits beneath the cards. Cropping and monochrome treatment use CSS; original downloaded image files are retained. Brand SVGs use Simple Icons (CC0) and the LinkedIn mark. Portraits identify the public figures requested for each platform; the links lead to Axel’s own accounts.
+The portraits are served locally and lazy-loaded. Image sources, authors and licenses are available in the expandable credits beneath the cards. Cropping and monochrome treatment use CSS; original downloaded image files are retained. Brand SVGs use Simple Icons (CC0) and the LinkedIn mark. Portraits identify the public figures requested for each platform; the links lead to Axel’s own accounts.
 
 ## Business contact
 
